@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace TestApp
+namespace SkypeFx
 {
     interface ILog
     {

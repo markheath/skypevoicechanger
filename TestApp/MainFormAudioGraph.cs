@@ -5,7 +5,7 @@ using System.Text;
 using JSNet;
 using NAudio.Wave;
 
-namespace TestApp
+namespace SkypeFx
 {
     class MainFormAudioGraph : IDisposable
     {
@@ -151,6 +151,7 @@ namespace TestApp
                 effects.Add(effect);
             }
 
+            RIAddEffect(effect.Name);
         }
 
         public void RemoveEffect(Effect effect)
@@ -163,6 +164,15 @@ namespace TestApp
             {
                 effects.Remove(effect);
             }
+
+            RIRemoveEffect(effect.Name);
+        }
+
+
+        private void RIAddEffect(string effect) {
+        }
+
+        private void RIRemoveEffect(string effect) {
         }
 
         public bool MoveUp(Effect effect)

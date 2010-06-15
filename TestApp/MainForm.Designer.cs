@@ -1,4 +1,4 @@
-﻿namespace TestApp
+﻿namespace SkypeFx
 {
     partial class MainForm
     {
@@ -48,6 +48,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.effectPanel1 = new JSNet.EffectPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.linkCustomerFeedbackOptions = new System.Windows.Forms.LinkLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,11 +234,23 @@
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
+            // linkCustomerFeedbackOptions
+            // 
+            this.linkCustomerFeedbackOptions.AutoSize = true;
+            this.linkCustomerFeedbackOptions.Location = new System.Drawing.Point(12, 420);
+            this.linkCustomerFeedbackOptions.Name = "linkCustomerFeedbackOptions";
+            this.linkCustomerFeedbackOptions.Size = new System.Drawing.Size(141, 13);
+            this.linkCustomerFeedbackOptions.TabIndex = 6;
+            this.linkCustomerFeedbackOptions.TabStop = true;
+            this.linkCustomerFeedbackOptions.Text = "Customer Feedback Options";
+            this.linkCustomerFeedbackOptions.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCustomerFeedbackOptions_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 442);
+            this.Controls.Add(this.linkCustomerFeedbackOptions);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.checkedListBox1);
@@ -272,6 +285,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonSkype;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.LinkLabel linkCustomerFeedbackOptions;
     }
 }
 

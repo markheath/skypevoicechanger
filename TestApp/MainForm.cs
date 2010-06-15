@@ -11,13 +11,14 @@ using NAudio.Wave;
 using JSNet;
 using System.ComponentModel.Composition;
 
-namespace TestApp
+namespace SkypeFx
 {
     [Export(typeof(MainForm))]
     public partial class MainForm : Form
     {
         MainFormAudioGraph audioGraph;
         List<ToolStripItem> playbackButtons;
+        CustomerFeedbackForm feedbackForm;
         
         [Import]
         public ICollection<Effect> Effects { get; set; }
@@ -233,6 +234,17 @@ namespace TestApp
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void linkCustomerFeedbackOptions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (feedbackForm == null || !feedbackForm.Visible)
+            {
+                feedbackForm = new CustomerFeedbackForm();
+            }
+
+            feedbackForm.Show();
         }
     }
 }

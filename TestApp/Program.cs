@@ -5,10 +5,11 @@ using System.Windows.Forms;
 using System.ComponentModel.Composition;
 using JSNet;
 
-namespace TestApp
+namespace SkypeFx
 {
     class Program
     {
+        bool customerFeedbackOptIn = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,10 +18,13 @@ namespace TestApp
         {
             Program p = new Program();
             p.Run();
+            RITeardown();   
         }
 
         public void Run()
         {
+            customerFeedbackOptIn = Properties.Settings.Default.CustomerFeedbackOptIn;
+            RISetup();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Compose();
@@ -48,6 +52,14 @@ namespace TestApp
 
         [Import(typeof(MainForm))]
         public Form MainWindow { get; set; }
+
+        private void RISetup()
+        {
+            ;
+        }
+        private static void RITeardown()
+        {
+        }
 
     }
 }

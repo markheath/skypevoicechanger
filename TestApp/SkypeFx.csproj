@@ -8,10 +8,14 @@
     <ProjectGuid>{E4B13002-D46C-4A87-A9D7-2CED4CB3EE17}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestApp</RootNamespace>
-    <AssemblyName>TestApp</AssemblyName>
+    <RootNamespace>SkypeFx</RootNamespace>
+    <AssemblyName>SkypeFx</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerFeedbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerFeedbackForm.designer.cs">
+      <DependentUpon>CustomerFeedbackForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EffectSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +84,9 @@
     <Compile Include="MicInterceptor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomerFeedbackForm.resx">
+      <DependentUpon>CustomerFeedbackForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EffectSelectorForm.resx">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,7 +101,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -7,7 +7,7 @@ using SKYPE4COMLib;
 using JSNet;
 using NAudio.Wave;
 
-namespace TestApp
+namespace SkypeFx
 {
     class MicInterceptor : IDisposable
     {

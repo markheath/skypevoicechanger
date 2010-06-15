@@ -7,7 +7,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Net;
 
-namespace TestApp
+namespace SkypeFx
 {
     class TcpServer : IDisposable
     {

@@ -1,4 +1,4 @@
-﻿namespace TestApp
+﻿namespace SkypeFx
 {
     partial class EffectSelectorForm
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NAudio.Wave;
 
-namespace TestApp
+namespace SkypeFx
 {
     class SkypeBufferStream : WaveStream
     {

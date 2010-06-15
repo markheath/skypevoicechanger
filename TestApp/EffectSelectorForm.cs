@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using JSNet;
 
-namespace TestApp
+namespace SkypeFx
 {
     public partial class EffectSelectorForm : Form
     {
