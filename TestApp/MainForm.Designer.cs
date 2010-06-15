@@ -236,6 +236,7 @@
             // 
             // linkCustomerFeedbackOptions
             // 
+            this.linkCustomerFeedbackOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkCustomerFeedbackOptions.AutoSize = true;
             this.linkCustomerFeedbackOptions.Location = new System.Drawing.Point(12, 420);
             this.linkCustomerFeedbackOptions.Name = "linkCustomerFeedbackOptions";
