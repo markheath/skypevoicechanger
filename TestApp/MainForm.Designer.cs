@@ -258,6 +258,7 @@
             this.Controls.Add(this.effectPanel1);
             this.Name = "MainForm";
             this.Text = "Effect Tester";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

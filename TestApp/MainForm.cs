@@ -239,12 +239,32 @@ namespace SkypeFx
 
         private void linkCustomerFeedbackOptions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (feedbackForm == null || !feedbackForm.Visible)
-            {
+            ShowFeedbackForm();
+        }
+
+        private void ShowFeedbackForm() {
+           
+            if (feedbackForm == null || !feedbackForm.Visible) {
                 feedbackForm = new CustomerFeedbackForm();
+                feedbackForm.Show(this);
             }
 
-            feedbackForm.Show();
         }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+
+            Properties.Settings appSettings = Properties.Settings.Default;
+
+            if (appSettings.FirstRun) {
+
+                ShowFeedbackForm();
+
+                appSettings.FirstRun = false;
+                appSettings.Save();
+            }
+
+
+        }
+
     }
 }

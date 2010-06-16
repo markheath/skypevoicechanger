@@ -55,8 +55,8 @@ namespace SkypeFx
 
         private void RISetup()
         {
-            ;
         }
+
         private static void RITeardown()
         {
         }

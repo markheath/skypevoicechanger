@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SkypeFx
 {
@@ -22,6 +23,7 @@ namespace SkypeFx
 
             rdoOptIn.Checked = appSettings.CustomerFeedbackOptIn;
 
+            risData.Links.Add(0, risData.Text.Length, "http://www.runtimeintelligence.com/portal?CompanyID=3e35f098-ce43-4f82-9e9d-05c8b1046a45&ApplicationID=121959b2-80b3-482a-96d0-31249486bfbf");
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -47,6 +49,13 @@ namespace SkypeFx
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void risData_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            
+            ProcessStartInfo psi = new ProcessStartInfo(e.Link.LinkData.ToString());
+            Process.Start(psi);
+
         }
     }
 }
