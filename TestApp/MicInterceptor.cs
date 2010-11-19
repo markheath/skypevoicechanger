@@ -30,18 +30,30 @@ namespace SkypeFx
         {
             this.log = log;
             InitSockets();
-
+            
+            
             skype = new Skype();
+            ISkype iSkype = (ISkype)skype;
+            if (!iSkype.Client.IsRunning)
+            {
+                log.Error("Skype is not running");
+            }
+
             _ISkypeEvents_Event events = (_ISkypeEvents_Event)skype;
+
             events.AttachmentStatus += OnSkypeAttachmentStatus;            
             skype.CallStatus += OnSkypeCallStatus;
+            skype.Error += OnSkypeError;
             skype.Attach(Protocol, false);
 
             bufferStream = new SkypeBufferStream(44100);
             OutputStream = new EffectStream(effects, bufferStream);
         }
 
-        
+        void OnSkypeError(Command command, int errorNumber, string description)
+        {
+            log.Error("Error {0}:{1}:{2}", command, errorNumber, description);
+        }      
 
         void OnSkypeAttachmentStatus(TAttachmentStatus status)
         {
@@ -130,7 +142,4 @@ namespace SkypeFx
             outServer.Dispose();
         }
     }
-
-
-
 }

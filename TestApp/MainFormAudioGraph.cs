@@ -69,8 +69,8 @@ namespace SkypeFx
 
             if (outStream.WaveFormat.Encoding != WaveFormatEncoding.Pcm)
             {
+                // no longer needed for MP3, but this should let us support mu-law etc
                 outStream = WaveFormatConversionStream.CreatePcmStream(outStream);
-                outStream = new BlockAlignReductionStream(outStream); // reduces choppiness
             }
         }
 
@@ -86,7 +86,11 @@ namespace SkypeFx
         {
             if (player == null)
             {
-                player = new WaveOut(0, 300, true);
+                WaveOut waveOut = new WaveOut(WaveCallbackInfo.NewWindow());
+                waveOut.DesiredLatency = 200; // 200ms
+                waveOut.NumberOfBuffers = 2;
+                waveOut.DeviceNumber = 0; // default device
+                player = waveOut;               
             }
         }
 

@@ -11,12 +11,20 @@ namespace SkypeFx
     interface ILog
     {
         void Info(string format, params object[] args);
+        void Error(string format, params object[] args);
     }
 
     class DebugLogger : ILog
     {
         public void Info(string format, params object[] args)
         {
+            Debug.Write("INFO: ");
+            Debug.WriteLine(string.Format(format, args));
+        }
+
+        public void Error(string format, params object[] args)
+        {
+            Debug.Write("ERROR: ");
             Debug.WriteLine(string.Format(format, args));
         }
     }
@@ -41,6 +49,21 @@ namespace SkypeFx
             else
             {
                 richTextBox.ForeColor = Color.Blue;
+                richTextBox.AppendText(string.Format("{0:HH:MM:ss} ", DateTime.Now));
+                richTextBox.AppendText(string.Format(format, args));
+                richTextBox.AppendText(Environment.NewLine);
+            }
+        }
+
+        public void Error(string format, params object[] args)
+        {
+            if (richTextBox.InvokeRequired)
+            {
+                richTextBox.BeginInvoke(new LogMethod(Error), format, args);
+            }
+            else
+            {
+                richTextBox.ForeColor = Color.Red;
                 richTextBox.AppendText(string.Format("{0:HH:MM:ss} ", DateTime.Now));
                 richTextBox.AppendText(string.Format(format, args));
                 richTextBox.AppendText(Environment.NewLine);
