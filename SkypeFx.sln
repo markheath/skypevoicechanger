@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSNet", "JSNet\JSNet.csproj", "{9A41CAC8-1D4F-44D6-B324-E0076D0AD590}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkypeFx", "TestApp\SkypeFx.csproj", "{E4B13002-D46C-4A87-A9D7-2CED4CB3EE17}"
