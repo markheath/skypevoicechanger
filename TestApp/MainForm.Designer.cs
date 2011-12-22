@@ -257,7 +257,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.effectPanel1);
             this.Name = "MainForm";
-            this.Text = "Effect Tester";
+            this.Text = "Skype Voice Changer";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.toolStrip1.ResumeLayout(false);
