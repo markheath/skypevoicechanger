@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="SkypeVoiceChanger.SillyVoice"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="78" d:DesignWidth="363">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFFB4B4" Offset="0" />
+                <GradientStop Color="Red" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="13,12,0,0" Name="textBlock1" Text="Silly Voice" VerticalAlignment="Top" FontSize="20" FontFamily="Verdana" FontStyle="Italic" Foreground="#FFFFFF62" />
+        <CheckBox Content="Enabled" Height="16" HorizontalAlignment="Left" Margin="11,50,0,0" Name="checkBox1" VerticalAlignment="Top" />
+        <Slider Height="23" HorizontalAlignment="Left" Margin="104,33,0,0" Name="slider1" VerticalAlignment="Top" Width="247" Value="5" />
+    </Grid>
+</UserControl>
