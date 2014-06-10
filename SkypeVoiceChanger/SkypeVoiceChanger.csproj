@@ -172,6 +172,12 @@
     <Compile Include="Views\ConnectionStatusPage.Designer.cs">
       <DependentUpon>ConnectionStatusPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EffectsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EffectsPage.Designer.cs">
+      <DependentUpon>EffectsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecordingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConnectionStatusPage.resx">
       <DependentUpon>ConnectionStatusPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EffectsPage.resx">
+      <DependentUpon>EffectsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecordingPage.resx">
       <DependentUpon>RecordingPage.cs</DependentUpon>

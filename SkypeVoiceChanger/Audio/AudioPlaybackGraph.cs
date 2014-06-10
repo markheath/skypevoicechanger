@@ -7,16 +7,16 @@ namespace SkypeVoiceChanger.Audio
     /// <summary>
     /// just for the playback part
     /// </summary>
-    class AudioPlaybackGraph : IDisposable
+    public class AudioPlaybackGraph : IDisposable
     {
         private WaveStream outStream;
         private IWavePlayer player;
         private EffectStream effectStream;
-        private readonly EffectChain effects;
+        private readonly EffectChain effectChain;
 
         public AudioPlaybackGraph(EffectChain effectChain)
         {
-            this.effects = effectChain;
+            this.effectChain = effectChain;
         }
 
         public bool FileLoaded
@@ -56,7 +56,7 @@ namespace SkypeVoiceChanger.Audio
 
         public void Play()
         {
-            effectStream = new EffectStream(effects, outStream.ToSampleProvider());
+            effectStream = new EffectStream(effectChain, outStream.ToSampleProvider());
             CreatePlayer();
             player.Init(effectStream);
             player.Play();
@@ -131,7 +131,7 @@ namespace SkypeVoiceChanger.Audio
             }
             else
             {
-                effects.Add(effect);
+                effectChain.Add(effect);
             }
 
         }
@@ -144,7 +144,7 @@ namespace SkypeVoiceChanger.Audio
             }
             else
             {
-                effects.Remove(effect);
+                effectChain.Remove(effect);
             }
 
         }
@@ -158,7 +158,7 @@ namespace SkypeVoiceChanger.Audio
             }
             else
             {
-                return effects.MoveUp(effect);
+                return effectChain.MoveUp(effect);
             }
         }
 
@@ -170,7 +170,7 @@ namespace SkypeVoiceChanger.Audio
             }
             else
             {
-                return effects.MoveDown(effect);
+                return effectChain.MoveDown(effect);
             }
         }
     }
