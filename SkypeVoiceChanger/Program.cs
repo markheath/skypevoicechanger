@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.ComponentModel.Composition;
-using SkypeVoiceChanger;
-using SkypeVoiceChanger.Effects;
+using System.Windows.Forms;
 
-namespace SkypeFx
+namespace SkypeVoiceChanger
 {
     class Program
     {

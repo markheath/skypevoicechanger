@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="metroLabel1.Text" xml:space="preserve">
-    <value>To enable recording, you need to purchase Skype Voice Changer Pro. This will allow you to record the whole conversation, including your own audio with or without effects. To find out more about the great features available in Skype Voice Changer Pro, click "Go Pro":</value>
-  </data>
 </root>

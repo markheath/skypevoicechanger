@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using SKYPE4COMLib;
-using SkypeFx;
 using SkypeVoiceChanger.Audio;
 using SkypeVoiceChanger.Effects;
 using SkypeVoiceChanger.Views;

@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Net.Sockets;
 using SKYPE4COMLib;
-using SkypeFx;
 
 namespace SkypeVoiceChanger.Audio
 {

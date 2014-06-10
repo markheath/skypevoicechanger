@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Data;
 using System.Linq;
@@ -11,16 +10,13 @@ using MetroFramework.Controls;
 
 namespace SkypeVoiceChanger.Views
 {
-    public partial class RecordingPage : MetroUserControl
+    public partial class ConnectionStatusPage : MetroUserControl
     {
-        public RecordingPage()
+        public ConnectionStatusPage()
         {
             InitializeComponent();
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://www.markheath.net/skypevoicechangerpro");
-        }
+        public ILog Log { get { return new RichTextLogger(richTextBoxLog); } }
     }
 }
