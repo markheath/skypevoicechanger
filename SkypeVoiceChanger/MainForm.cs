@@ -10,6 +10,7 @@ using SKYPE4COMLib;
 using SkypeFx;
 using SkypeVoiceChanger.Audio;
 using SkypeVoiceChanger.Effects;
+using SkypeVoiceChanger.Views;
 
 namespace SkypeVoiceChanger
 {
@@ -31,7 +32,7 @@ namespace SkypeVoiceChanger
             InitializeComponent();
             log = new RichTextLogger(this.richTextBox1);
             this.effects = new EffectChain();
-            audioPlaybackGraph = new AudioPlaybackGraph(log, effects);
+            audioPlaybackGraph = new AudioPlaybackGraph(effects);
             audioPipeline = new AudioPipeline(effects);
             playbackButtons = new List<ToolStripItem>();
             playbackButtons.Add(buttonPlay);
@@ -39,6 +40,7 @@ namespace SkypeVoiceChanger
             playbackButtons.Add(buttonOpen);
             playbackButtons.Add(buttonStop);
             playbackButtons.Add(buttonRewind);
+            tabPageRecord.Controls.Add(new RecordingPage() {Dock = DockStyle.Fill});
             tabPageAbout.Controls.Add(new AboutPage() {Dock = DockStyle.Fill});
         }
 

@@ -16,7 +16,7 @@ namespace SkypeFx
         [STAThread]
         static void Main()
         {
-            Program p = new Program();
+            var p = new Program();
             p.Run();
         }
 
@@ -35,12 +35,8 @@ namespace SkypeFx
         {
             var catalog = new AggregatingComposablePartCatalog();
             var mainAssemblyCatalog = new AttributedAssemblyPartCatalog(this.GetType().Assembly);
-            //var jsNetCatalog = new AttributedAssemblyPartCatalog(typeof(Effect).Assembly);            
-            //var addInEffects = new DirectoryPartCatalog("Effects"); 
 
             catalog.Catalogs.Add(mainAssemblyCatalog);
-            //catalog.Catalogs.Add(jsNetCatalog);
-            //catalog.Catalogs.Add(addInEffects);
             var container = new CompositionContainer(catalog);
             
             container.AddPart(this);

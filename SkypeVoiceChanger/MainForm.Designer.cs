@@ -35,6 +35,7 @@ namespace SkypeVoiceChanger
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.effectPanel1 = new SkypeVoiceChanger.Effects.EffectPanel();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSkype = new System.Windows.Forms.ToolStripButton();
@@ -49,12 +50,11 @@ namespace SkypeVoiceChanger
             this.buttonRemoveEffect = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectUp = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectDown = new System.Windows.Forms.ToolStripButton();
-            this.tabPageAbout = new System.Windows.Forms.TabPage();
             this.tabPageRecord = new System.Windows.Forms.TabPage();
+            this.tabPageAbout = new System.Windows.Forms.TabPage();
             this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.effectPanel1 = new SkypeVoiceChanger.Effects.EffectPanel();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -67,11 +67,11 @@ namespace SkypeVoiceChanger
             this.metroTabControl1.Controls.Add(this.tabPage2);
             this.metroTabControl1.Controls.Add(this.tabPageRecord);
             this.metroTabControl1.Controls.Add(this.tabPageAbout);
-            this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(677, 359);
+            this.metroTabControl1.Size = new System.Drawing.Size(677, 362);
             this.metroTabControl1.TabIndex = 6;
             this.metroTabControl1.UseSelectable = true;
             // 
@@ -80,7 +80,7 @@ namespace SkypeVoiceChanger
             this.tabPage1.Controls.Add(this.richTextBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(669, 317);
+            this.tabPage1.Size = new System.Drawing.Size(669, 320);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Status";
             // 
@@ -104,6 +104,16 @@ namespace SkypeVoiceChanger
             this.tabPage2.Size = new System.Drawing.Size(669, 317);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Effects";
+            // 
+            // effectPanel1
+            // 
+            this.effectPanel1.AutoScroll = true;
+            this.effectPanel1.BackColor = System.Drawing.Color.White;
+            this.effectPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectPanel1.Location = new System.Drawing.Point(140, 39);
+            this.effectPanel1.Name = "effectPanel1";
+            this.effectPanel1.Size = new System.Drawing.Size(529, 278);
+            this.effectPanel1.TabIndex = 8;
             // 
             // checkedListBox1
             // 
@@ -248,14 +258,6 @@ namespace SkypeVoiceChanger
             this.buttonMoveEffectDown.Text = "Move Selected Effect Down";
             this.buttonMoveEffectDown.Click += new System.EventHandler(this.buttonMoveEffectDown_Click);
             // 
-            // tabPageAbout
-            // 
-            this.tabPageAbout.Location = new System.Drawing.Point(4, 38);
-            this.tabPageAbout.Name = "tabPageAbout";
-            this.tabPageAbout.Size = new System.Drawing.Size(669, 317);
-            this.tabPageAbout.TabIndex = 3;
-            this.tabPageAbout.Text = "About";
-            // 
             // tabPageRecord
             // 
             this.tabPageRecord.Location = new System.Drawing.Point(4, 38);
@@ -263,6 +265,14 @@ namespace SkypeVoiceChanger
             this.tabPageRecord.Size = new System.Drawing.Size(669, 317);
             this.tabPageRecord.TabIndex = 2;
             this.tabPageRecord.Text = "Record";
+            // 
+            // tabPageAbout
+            // 
+            this.tabPageAbout.Location = new System.Drawing.Point(4, 38);
+            this.tabPageAbout.Name = "tabPageAbout";
+            this.tabPageAbout.Size = new System.Drawing.Size(669, 317);
+            this.tabPageAbout.TabIndex = 3;
+            this.tabPageAbout.Text = "About";
             // 
             // metroLink1
             // 
@@ -285,16 +295,6 @@ namespace SkypeVoiceChanger
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(100, 23);
             this.metroLabel1.TabIndex = 0;
-            // 
-            // effectPanel1
-            // 
-            this.effectPanel1.AutoScroll = true;
-            this.effectPanel1.BackColor = System.Drawing.Color.White;
-            this.effectPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.effectPanel1.Location = new System.Drawing.Point(140, 39);
-            this.effectPanel1.Name = "effectPanel1";
-            this.effectPanel1.Size = new System.Drawing.Size(529, 278);
-            this.effectPanel1.TabIndex = 8;
             // 
             // MainForm
             // 

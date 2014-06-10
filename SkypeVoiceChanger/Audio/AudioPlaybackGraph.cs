@@ -1,25 +1,21 @@
 ﻿using System;
 using NAudio.Wave;
-using SkypeFx;
-using SkypeVoiceChanger.Audio;
 using SkypeVoiceChanger.Effects;
 
-namespace SkypeVoiceChanger
+namespace SkypeVoiceChanger.Audio
 {
     /// <summary>
     /// just for the playback part
     /// </summary>
     class AudioPlaybackGraph : IDisposable
     {
-        WaveStream outStream;
-        IWavePlayer player;
-        EffectStream effectStream;
-        ILog log;
+        private WaveStream outStream;
+        private IWavePlayer player;
+        private EffectStream effectStream;
         private readonly EffectChain effects;
 
-        public AudioPlaybackGraph(ILog log, EffectChain effectChain)
+        public AudioPlaybackGraph(EffectChain effectChain)
         {
-            this.log = log;
             this.effects = effectChain;
         }
 
@@ -30,8 +26,6 @@ namespace SkypeVoiceChanger
                 return outStream != null;
             }
         }
-
-
 
         public void LoadFile(string fileName)
         {

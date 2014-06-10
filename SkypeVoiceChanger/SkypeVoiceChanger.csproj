@@ -161,11 +161,17 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AudioPlaybackGraph.cs">
+    <Compile Include="Audio\AudioPlaybackGraph.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\RecordingPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\RecordingPage.Designer.cs">
+      <DependentUpon>RecordingPage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EffectSelectorForm.resx">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +200,9 @@
     </Compile>
     <EmbeddedResource Include="Views\AboutPage.resx">
       <DependentUpon>AboutPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RecordingPage.resx">
+      <DependentUpon>RecordingPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
