@@ -1,40 +1,14 @@
-﻿// Copyright 2006, Thomas Scott Stillwell
-// All rights reserved.
-//
-//Redistribution and use in source and binary forms, with or without modification, are permitted 
-//provided that the following conditions are met:
-//
-//Redistributions of source code must retain the above copyright notice, this list of conditions 
-//and the following disclaimer. 
-//
-//Redistributions in binary form must reproduce the above copyright notice, this list of conditions 
-//and the following disclaimer in the documentation and/or other materials provided with the distribution. 
-//
-//The name of Thomas Scott Stillwell may not be used to endorse or 
-//promote products derived from this software without specific prior written permission. 
-//
-//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR 
-//IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND 
-//FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
-//BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
-//(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-//PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-//STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
-//THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//ported to .NET by Mark Heath
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// original effect 4x4 from REAPER
+// Ported to .NET by Mark Heath
+
 using System.ComponentModel.Composition;
 
-namespace JSNet
+namespace SkypeVoiceChanger.Effects
 {
     [Export(typeof(Effect))]
-    public class ThreeBandEQ : Effect
+    public class FourByFourEQ : Effect
     {
-
-        public ThreeBandEQ()
+        public FourByFourEQ()
         {
             AddSlider(0, 0, 100, 0.1f, "lo drive%");
             AddSlider(0, -12, 12, 0.1f, "lo gain");
@@ -42,20 +16,13 @@ namespace JSNet
             AddSlider(0, -12, 12, 0.1f, "mid gain");
             AddSlider(0, 0, 100, 0.1f, "hi drive%");
             AddSlider(0, -12, 12, 0.1f, "hi gain");
-            AddSlider(240, 60, 680, 1, "low-mid freq");
-            AddSlider(2400, 720, 12000, 10, "mid-high freq");
+            AddSlider(240, 60, 500, 1, "low-mid xover for multiband");
+            AddSlider(2400, 510, 10000, 10, "mid-high xover for multiband");
         }
-
-        public override string Name
-        {
-            get { return "3 Band EQ"; }
-        }
-
         float db2log;
         float pi;
         float halfpi;
         float halfpiscaled;
-
 
         public override void Init()
         {
@@ -64,14 +31,33 @@ namespace JSNet
             halfpi = pi / 2;
             halfpiscaled = halfpi * 1.41254f;
         }
+
+        public override string Name
+        {
+            get { return "3 Band EQ with crossover"; }
+        }
+
         float mixl;
         float mixm;
         float mixh;
+        float drivel;
+        float drivem;
+        float driveh;
+        float drivel1;
+        float drivem1;
+        float driveh1;
+        float drivel2;
+        float drivem2;
+        float driveh2;
         float al;
         float ah;
         float mixl1;
         float mixm1;
         float mixh1;
+        float mixl2;
+        float mixm2;
+        float mixh2;
+
         float gainl;
         float gainm;
         float gainh;
@@ -81,28 +67,50 @@ namespace JSNet
         float mixlg1;
         float mixmg1;
         float mixhg1;
+        float mixlgd;
+        float mixmgd;
+        float mixhgd;
 
         public override void Slider()
         {
             mixl = slider1 / 100;
             mixm = slider3 / 100;
             mixh = slider5 / 100;
+            drivel = mixl;
+            drivem = mixm;
+            driveh = mixh;
+            drivel1 = 1 / (1 - (drivel / 2));
+            drivem1 = 1 / (1 - (drivem / 2));
+            driveh1 = 1 / (1 - (driveh / 2));
+            drivel2 = drivel / 2;
+            drivem2 = drivem / 2;
+            driveh2 = driveh / 2;
             al = min(slider7, SampleRate) / SampleRate;
             ah = max(min(slider8, SampleRate) / SampleRate, al);
+
             mixl1 = 1 - mixl;
             mixm1 = 1 - mixm;
             mixh1 = 1 - mixh;
+            mixl2 = mixl / 2;
+            mixm2 = mixm / 2;
+            mixh2 = mixh / 2;
+
             gainl = exp(slider2 * db2log);
             gainm = exp(slider4 * db2log);
             gainh = exp(slider6 * db2log);
             mixlg = mixl * gainl;
             mixmg = mixm * gainm;
             mixhg = mixh * gainh;
+
+            mixlgd = mixl * gainl * drivel1;
+            mixmgd = mixm * gainm * drivem1;
+            mixhgd = mixh * gainh * driveh1;
+
             mixlg1 = mixl1 * gainl;
             mixmg1 = mixm1 * gainm;
             mixhg1 = mixh1 * gainh;
         }
-        
+
         float lfl;
         float lfh;
         float rfh;
@@ -133,9 +141,9 @@ namespace JSNet
 
             float mid_r = dry1 - low_r - high_r;
 
-            float wet0_l = mixlg * sin(low_l * halfpiscaled);
-            float wet0_m = mixmg * sin(mid_l * halfpiscaled);
-            float wet0_h = mixhg * sin(high_l * halfpiscaled);
+            float wet0_l = mixlgd * low_l * (1 - abs(low_l * drivel2));
+            float wet0_m = mixmgd * mid_l * (1 - abs(mid_l * drivem2));
+            float wet0_h = mixhgd * high_l * (1 - abs(high_l * driveh2));
             float wet0 = (wet0_l + wet0_m + wet0_h);
 
             float dry0_l = low_l * mixlg1;
@@ -143,9 +151,9 @@ namespace JSNet
             float dry0_h = high_l * mixhg1;
             dry0 = (dry0_l + dry0_m + dry0_h);
 
-            float wet1_l = mixlg * sin(low_r * halfpiscaled);
-            float wet1_m = mixmg * sin(mid_r * halfpiscaled);
-            float wet1_h = mixhg * sin(high_r * halfpiscaled);
+            float wet1_l = mixlgd * low_r * (1 - abs(low_r * drivel2));
+            float wet1_m = mixmgd * mid_r * (1 - abs(mid_r * drivem2));
+            float wet1_h = mixhgd * high_r * (1 - abs(high_r * driveh2));
             float wet1 = (wet1_l + wet1_m + wet1_h);
 
             float dry1_l = low_r * mixlg1;

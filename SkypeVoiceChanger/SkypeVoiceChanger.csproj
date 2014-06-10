@@ -112,6 +112,7 @@
     <Compile Include="EffectSelectorForm.Designer.cs">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Effects\BadBussMojo.cs" />
     <Compile Include="Effects\Chorus.cs" />
     <Compile Include="Effects\Delay.cs" />
     <Compile Include="Effects\DelayPong.cs" />
@@ -130,12 +131,17 @@
       <DependentUpon>EffectSliderPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Effects\EffectStream.cs" />
+    <Compile Include="Effects\EventHorizon.cs" />
+    <Compile Include="Effects\FairlyChildish.cs" />
+    <Compile Include="Effects\FastAttackCompressor1175.cs" />
     <Compile Include="Effects\FlangeBaby.cs" />
     <Compile Include="Effects\Flanger.cs" />
+    <Compile Include="Effects\FourByFourEQ.cs" />
     <Compile Include="Effects\IEffectGui.cs" />
     <Compile Include="Effects\IEffectSliderGui.cs" />
     <Compile Include="Effects\Slider.cs" />
     <Compile Include="Effects\SuperPitch.cs" />
+    <Compile Include="Effects\ThreeBandEQ.cs" />
     <Compile Include="Effects\Tremolo.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>

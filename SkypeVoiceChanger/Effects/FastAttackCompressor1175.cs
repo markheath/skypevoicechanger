@@ -22,13 +22,11 @@
 //STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
 //THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //adapted to .NET by Mark Heath
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.Composition;
 
-namespace JSNet
+namespace SkypeVoiceChanger.Effects
 {
     [Export(typeof(Effect))]
     public class FastAttackCompressor1175 : Effect
