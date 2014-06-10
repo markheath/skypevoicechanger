@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using SKYPE4COMLib;
@@ -17,10 +18,10 @@ namespace SkypeVoiceChanger
     {
         readonly AudioPipeline audioPipeline;
         readonly List<ToolStripItem> playbackButtons;
-        private EffectChain effects;
-        private AudioPlaybackGraph audioPlaybackGraph;
+        private readonly EffectChain effects;
+        private readonly AudioPlaybackGraph audioPlaybackGraph;
         private SkypeAudioInterceptor audioInterceptor;
-        private ILog log;
+        private readonly ILog log;
 
         [Import]
         public ICollection<Effect> Effects { get; set; }
@@ -28,8 +29,6 @@ namespace SkypeVoiceChanger
         public MainForm()
         {
             InitializeComponent();
-            timer1.Interval = 500;
-            timer1.Start();
             log = new RichTextLogger(this.richTextBox1);
             this.effects = new EffectChain();
             audioPlaybackGraph = new AudioPlaybackGraph(log, effects);
@@ -39,7 +38,8 @@ namespace SkypeVoiceChanger
             playbackButtons.Add(buttonPause);
             playbackButtons.Add(buttonOpen);
             playbackButtons.Add(buttonStop);
-            playbackButtons.Add(buttonRewind);           
+            playbackButtons.Add(buttonRewind);
+            tabPageAbout.Controls.Add(new AboutPage() {Dock = DockStyle.Fill});
         }
 
         public void ConnectToSkpe()
@@ -241,6 +241,5 @@ namespace SkypeVoiceChanger
             }
 
         }
-
     }
 }
