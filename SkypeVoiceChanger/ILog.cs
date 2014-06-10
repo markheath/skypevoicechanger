@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
-namespace SkypeFx
+namespace SkypeVoiceChanger
 {
-    interface ILog
+    public interface ILog
     {
         void Info(string format, params object[] args);
         void Warning(string format, params object[] args);

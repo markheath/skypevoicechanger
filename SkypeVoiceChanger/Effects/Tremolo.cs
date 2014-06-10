@@ -1,15 +1,12 @@
 ﻿// This effect Copyright (C) 2004 and later Cockos Incorporated
 // License: GPL - http://www.gnu.org/licenses/gpl.html
 // ported to .NET by Mark Heath
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
 
 namespace SkypeVoiceChanger.Effects
 {
-        [Export(typeof(Effect))]
+    [Export(typeof(Effect))]
     public class Tremolo : Effect
     {
         public Tremolo()

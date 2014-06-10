@@ -30,7 +30,11 @@ namespace SkypeVoiceChanger
         public MainForm()
         {
             InitializeComponent();
-            log = new RichTextLogger(this.richTextBox1);
+            tabPageRecord.Controls.Add(new RecordingPage() { Dock = DockStyle.Fill });
+            tabPageAbout.Controls.Add(new AboutPage() { Dock = DockStyle.Fill });
+            var connectionStatusPage = new ConnectionStatusPage() {Dock = DockStyle.Fill};
+            tabPage1.Controls.Add(connectionStatusPage);
+            log = connectionStatusPage.Log;
             this.effects = new EffectChain();
             audioPlaybackGraph = new AudioPlaybackGraph(effects);
             audioPipeline = new AudioPipeline(effects);
@@ -40,8 +44,6 @@ namespace SkypeVoiceChanger
             playbackButtons.Add(buttonOpen);
             playbackButtons.Add(buttonStop);
             playbackButtons.Add(buttonRewind);
-            tabPageRecord.Controls.Add(new RecordingPage() {Dock = DockStyle.Fill});
-            tabPageAbout.Controls.Add(new AboutPage() {Dock = DockStyle.Fill});
         }
 
         public void ConnectToSkpe()
@@ -67,7 +69,7 @@ namespace SkypeVoiceChanger
 
         private void buttonOpen_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
             ofd.Filter = "Supported Files (*.mp3;*.wav)|*.mp3;*.wav";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
