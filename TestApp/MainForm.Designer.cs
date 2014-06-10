@@ -44,25 +44,23 @@
             this.buttonRemoveEffect = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectUp = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectDown = new System.Windows.Forms.ToolStripButton();
-            this.buttonSave = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.effectPanel1 = new JSNet.EffectPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.linkCustomerFeedbackOptions = new System.Windows.Forms.LinkLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(12, 57);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(159, 349);
+            this.checkedListBox1.Size = new System.Drawing.Size(159, 364);
             this.checkedListBox1.TabIndex = 3;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // toolStrip1
             // 
@@ -79,8 +77,7 @@
             this.buttonAddEffect,
             this.buttonRemoveEffect,
             this.buttonMoveEffectUp,
-            this.buttonMoveEffectDown,
-            this.buttonSave});
+            this.buttonMoveEffectDown});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(717, 39);
@@ -197,26 +194,15 @@
             this.buttonMoveEffectDown.Text = "Move Selected Effect Down";
             this.buttonMoveEffectDown.Click += new System.EventHandler(this.buttonMoveEffectDown_Click);
             // 
-            // buttonSave
-            // 
-            this.buttonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
-            this.buttonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(36, 36);
-            this.buttonSave.Text = "Save Processed Audio";
-            this.buttonSave.Visible = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // effectPanel1
             // 
-            this.effectPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.effectPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.effectPanel1.AutoScroll = true;
             this.effectPanel1.BackColor = System.Drawing.Color.White;
             this.effectPanel1.Location = new System.Drawing.Point(177, 57);
@@ -226,40 +212,27 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(386, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(319, 51);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
-            // linkCustomerFeedbackOptions
-            // 
-            this.linkCustomerFeedbackOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkCustomerFeedbackOptions.AutoSize = true;
-            this.linkCustomerFeedbackOptions.Location = new System.Drawing.Point(12, 420);
-            this.linkCustomerFeedbackOptions.Name = "linkCustomerFeedbackOptions";
-            this.linkCustomerFeedbackOptions.Size = new System.Drawing.Size(141, 13);
-            this.linkCustomerFeedbackOptions.TabIndex = 6;
-            this.linkCustomerFeedbackOptions.TabStop = true;
-            this.linkCustomerFeedbackOptions.Text = "Customer Feedback Options";
-            this.linkCustomerFeedbackOptions.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCustomerFeedbackOptions_LinkClicked);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 442);
-            this.Controls.Add(this.linkCustomerFeedbackOptions);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.effectPanel1);
             this.Name = "MainForm";
             this.Text = "Skype Voice Changer";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -282,12 +255,10 @@
         private System.Windows.Forms.ToolStripButton buttonRemoveEffect;
         private System.Windows.Forms.ToolStripButton buttonMoveEffectUp;
         private System.Windows.Forms.ToolStripButton buttonMoveEffectDown;
-        private System.Windows.Forms.ToolStripButton buttonSave;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripButton toolStripButtonSkype;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.LinkLabel linkCustomerFeedbackOptions;
     }
 }
 

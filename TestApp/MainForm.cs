@@ -18,7 +18,6 @@ namespace SkypeFx
     {
         MainFormAudioGraph audioGraph;
         List<ToolStripItem> playbackButtons;
-        CustomerFeedbackForm feedbackForm;
         
         [Import]
         public ICollection<Effect> Effects { get; set; }
@@ -36,27 +35,6 @@ namespace SkypeFx
             playbackButtons.Add(buttonOpen);
             playbackButtons.Add(buttonStop);
             playbackButtons.Add(buttonRewind);           
-        }
-
-        private void passThroughEffectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "*.wav|*.wav";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (WaveFileReader reader = new WaveFileReader(openFileDialog.FileName))
-                {
-                    SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    saveFileDialog.Filter = "*.wav|*.wav";
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        string fileName = saveFileDialog.FileName;
-                        EffectStream effectStream = new EffectStream(new PitchDown(), reader);
-                        WaveFileWriter.CreateWaveFile(fileName, effectStream);
-                        System.Diagnostics.Process.Start(fileName);
-                    }
-                }
-            }
         }
 
         private void buttonOpen_Click(object sender, EventArgs e)
@@ -231,38 +209,15 @@ namespace SkypeFx
             }
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void linkCustomerFeedbackOptions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ShowFeedbackForm();
-        }
-
-        private void ShowFeedbackForm() {
-           
-            if (feedbackForm == null || !feedbackForm.Visible) {
-                feedbackForm = new CustomerFeedbackForm();
-                feedbackForm.Show(this);
-            }
-
-        }
-
         private void MainForm_Load(object sender, EventArgs e) {
 
             Properties.Settings appSettings = Properties.Settings.Default;
 
             if (appSettings.FirstRun) {
 
-                ShowFeedbackForm();
-
                 appSettings.FirstRun = false;
                 appSettings.Save();
             }
-
 
         }
 

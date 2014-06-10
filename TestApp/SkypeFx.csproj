@@ -90,12 +90,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerFeedbackForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomerFeedbackForm.designer.cs">
-      <DependentUpon>CustomerFeedbackForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="EffectSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,9 +107,6 @@
     <Compile Include="MicInterceptor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CustomerFeedbackForm.resx">
-      <DependentUpon>CustomerFeedbackForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EffectSelectorForm.resx">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
