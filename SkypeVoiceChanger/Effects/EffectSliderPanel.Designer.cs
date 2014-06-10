@@ -28,28 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.textBoxValue = new System.Windows.Forms.TextBox();
             this.labelDescription = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
+            this.textBoxValue = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.Location = new System.Drawing.Point(142, 3);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(275, 45);
-            this.trackBar1.TabIndex = 0;
-            // 
-            // textBoxValue
-            // 
-            this.textBoxValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxValue.Location = new System.Drawing.Point(411, 3);
-            this.textBoxValue.Name = "textBoxValue";
-            this.textBoxValue.Size = new System.Drawing.Size(62, 20);
-            this.textBoxValue.TabIndex = 1;
             // 
             // labelDescription
             // 
@@ -60,16 +42,40 @@
             this.labelDescription.TabIndex = 2;
             this.labelDescription.Text = "Slider Description";
             // 
+            // metroTrackBar1
+            // 
+            this.metroTrackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroTrackBar1.BackColor = System.Drawing.Color.Transparent;
+            this.metroTrackBar1.Location = new System.Drawing.Point(131, 1);
+            this.metroTrackBar1.Name = "metroTrackBar1";
+            this.metroTrackBar1.Size = new System.Drawing.Size(274, 23);
+            this.metroTrackBar1.TabIndex = 3;
+            this.metroTrackBar1.Text = "metroTrackBar1";
+            // 
+            // textBoxValue
+            // 
+            this.textBoxValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxValue.Lines = new string[0];
+            this.textBoxValue.Location = new System.Drawing.Point(411, 3);
+            this.textBoxValue.MaxLength = 32767;
+            this.textBoxValue.Name = "textBoxValue";
+            this.textBoxValue.PasswordChar = '\0';
+            this.textBoxValue.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.textBoxValue.SelectedText = "";
+            this.textBoxValue.Size = new System.Drawing.Size(61, 23);
+            this.textBoxValue.TabIndex = 4;
+            this.textBoxValue.UseSelectable = true;
+            // 
             // EffectSliderPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxValue);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.metroTrackBar1);
+            this.Controls.Add(this.labelDescription);
             this.Name = "EffectSliderPanel";
             this.Size = new System.Drawing.Size(476, 35);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -77,8 +83,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TextBox textBoxValue;
         private System.Windows.Forms.Label labelDescription;
+        private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
+        private MetroFramework.Controls.MetroTextBox textBoxValue;
     }
 }

@@ -10,15 +10,15 @@ namespace SkypeVoiceChanger.Effects
         public EffectSliderPanel()
         {
             InitializeComponent();
-            this.trackBar1.Minimum = 0;
-            this.trackBar1.Maximum = 1000;
-            this.trackBar1.SmallChange = 50;
-            this.trackBar1.LargeChange = 100;            
-            this.trackBar1.TickFrequency = 50;
-            this.trackBar1.Scroll += trackBar1_Scroll;            
+            this.metroTrackBar1.Minimum = 0;
+            this.metroTrackBar1.Maximum = 1000;
+            this.metroTrackBar1.SmallChange = 50;
+            this.metroTrackBar1.LargeChange = 100;
+            //this.metroTrackBar1.TickFrequency = 50;
+            this.metroTrackBar1.Scroll += OnTrackbackScroll;            
         }
 
-        void trackBar1_Scroll(object sender, EventArgs e)
+        void OnTrackbackScroll(object sender, EventArgs e)
         {
             if (this.slider != null)
             {
@@ -26,7 +26,7 @@ namespace SkypeVoiceChanger.Effects
                 this.slider.Value = value;
                 SetSliderTextBox(value);
                 // put it back to show granularity
-                trackBar1.Value = SliderToTrackBar();
+                metroTrackBar1.Value = SliderToTrackBar();
                 RaiseValueChangedEvent(e);
             }
         }
@@ -56,13 +56,13 @@ namespace SkypeVoiceChanger.Effects
         {
             float value = 0;
 
-            if (trackBar1.Value == trackBar1.Maximum)
+            if (metroTrackBar1.Value == metroTrackBar1.Maximum)
             {
                 value = slider.Maximum;
             }
             else
             {
-                value = slider.Minimum + (this.trackBar1.Value * (slider.Maximum - slider.Minimum) / 1000.0f);
+                value = slider.Minimum + (this.metroTrackBar1.Value * (slider.Maximum - slider.Minimum) / 1000.0f);
                 value -= value % slider.Increment;
             }
 
@@ -77,9 +77,9 @@ namespace SkypeVoiceChanger.Effects
         public void Initialize(Slider slider)
         {
             this.slider = slider;
-            this.trackBar1.Value = SliderToTrackBar();
+            this.metroTrackBar1.Value = SliderToTrackBar();
             this.labelDescription.Text = slider.Description;
-            this.trackBar1.LargeChange = (int)(trackBar1.Maximum * (slider.Increment / (slider.Maximum - slider.Minimum)));
+            this.metroTrackBar1.LargeChange = (int)(metroTrackBar1.Maximum * (slider.Increment / (slider.Maximum - slider.Minimum)));
             SetSliderTextBox(slider.Value);
         }
 

@@ -35,7 +35,6 @@ namespace SkypeVoiceChanger
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.effectPanel1 = new SkypeVoiceChanger.Effects.EffectPanel();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSkype = new System.Windows.Forms.ToolStripButton();
@@ -55,6 +54,7 @@ namespace SkypeVoiceChanger
             this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.effectPanel1 = new SkypeVoiceChanger.Effects.EffectPanel();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -104,16 +104,6 @@ namespace SkypeVoiceChanger
             this.tabPage2.Size = new System.Drawing.Size(669, 317);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Effects";
-            // 
-            // effectPanel1
-            // 
-            this.effectPanel1.AutoScroll = true;
-            this.effectPanel1.BackColor = System.Drawing.Color.White;
-            this.effectPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.effectPanel1.Location = new System.Drawing.Point(140, 39);
-            this.effectPanel1.Name = "effectPanel1";
-            this.effectPanel1.Size = new System.Drawing.Size(529, 278);
-            this.effectPanel1.TabIndex = 8;
             // 
             // checkedListBox1
             // 
@@ -295,6 +285,16 @@ namespace SkypeVoiceChanger
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(100, 23);
             this.metroLabel1.TabIndex = 0;
+            // 
+            // effectPanel1
+            // 
+            this.effectPanel1.AutoScroll = true;
+            this.effectPanel1.BackColor = System.Drawing.Color.White;
+            this.effectPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectPanel1.Location = new System.Drawing.Point(140, 39);
+            this.effectPanel1.Name = "effectPanel1";
+            this.effectPanel1.Size = new System.Drawing.Size(529, 278);
+            this.effectPanel1.TabIndex = 8;
             // 
             // MainForm
             // 
