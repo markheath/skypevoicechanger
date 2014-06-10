@@ -30,7 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSkype = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,23 +50,77 @@
             this.buttonRemoveEffect = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectUp = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectDown = new System.Windows.Forms.ToolStripButton();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.effectPanel1 = new JSNet.EffectPanel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.metroTabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // checkedListBox1
+            // timer1
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 102);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(159, 319);
-            this.checkedListBox1.TabIndex = 3;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // metroTabControl1
+            // 
+            this.metroTabControl1.Controls.Add(this.tabPage1);
+            this.metroTabControl1.Controls.Add(this.tabPage2);
+            this.metroTabControl1.Controls.Add(this.tabPage3);
+            this.metroTabControl1.Controls.Add(this.tabPage4);
+            this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
+            this.metroTabControl1.Name = "metroTabControl1";
+            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.Size = new System.Drawing.Size(677, 359);
+            this.metroTabControl1.TabIndex = 6;
+            this.metroTabControl1.UseSelectable = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.richTextBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 38);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(669, 317);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Connect";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.effectPanel1);
+            this.tabPage2.Controls.Add(this.checkedListBox1);
+            this.tabPage2.Controls.Add(this.toolStrip1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 38);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(669, 317);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Effects";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 38);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(669, 317);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Record";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 38);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(669, 317);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "About";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(34, 58);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(326, 91);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "";
             // 
             // toolStrip1
             // 
@@ -78,10 +138,10 @@
             this.buttonRemoveEffect,
             this.buttonMoveEffectUp,
             this.buttonMoveEffectDown});
-            this.toolStrip1.Location = new System.Drawing.Point(20, 60);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(677, 39);
-            this.toolStrip1.TabIndex = 4;
+            this.toolStrip1.Size = new System.Drawing.Size(669, 39);
+            this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButtonSkype
@@ -194,71 +254,71 @@
             this.buttonMoveEffectDown.Text = "Move Selected Effect Down";
             this.buttonMoveEffectDown.Click += new System.EventHandler(this.buttonMoveEffectDown_Click);
             // 
-            // timer1
+            // checkedListBox1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(0, 39);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(140, 278);
+            this.checkedListBox1.TabIndex = 7;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // effectPanel1
             // 
-            this.effectPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.effectPanel1.AutoScroll = true;
             this.effectPanel1.BackColor = System.Drawing.Color.White;
-            this.effectPanel1.Location = new System.Drawing.Point(177, 57);
+            this.effectPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectPanel1.Location = new System.Drawing.Point(140, 39);
             this.effectPanel1.Name = "effectPanel1";
-            this.effectPanel1.Size = new System.Drawing.Size(528, 373);
-            this.effectPanel1.TabIndex = 2;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(404, 57);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(312, 51);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.effectPanel1.Size = new System.Drawing.Size(529, 278);
+            this.effectPanel1.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 442);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.effectPanel1);
+            this.Controls.Add(this.metroTabControl1);
             this.Name = "MainForm";
             this.Text = "Skype Voice Changer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.metroTabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private JSNet.EffectPanel effectPanel1;
+        private System.Windows.Forms.Timer timer1;
+        private MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSkype;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton buttonOpen;
+        private System.Windows.Forms.ToolStripButton buttonRewind;
         private System.Windows.Forms.ToolStripButton buttonPlay;
         private System.Windows.Forms.ToolStripButton buttonPause;
         private System.Windows.Forms.ToolStripButton buttonStop;
-        private System.Windows.Forms.ToolStripButton buttonOpen;
-        private System.Windows.Forms.ToolStripButton buttonRewind;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton buttonAddEffect;
         private System.Windows.Forms.ToolStripButton buttonRemoveEffect;
         private System.Windows.Forms.ToolStripButton buttonMoveEffectUp;
         private System.Windows.Forms.ToolStripButton buttonMoveEffectDown;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonSkype;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private JSNet.EffectPanel effectPanel1;
     }
 }
 

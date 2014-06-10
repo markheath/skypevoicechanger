@@ -105,6 +105,11 @@
     <Compile Include="EffectSelectorForm.Designer.cs">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
     <Compile Include="ILog.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -118,6 +123,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EffectSelectorForm.resx">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -194,6 +203,39 @@
       <Isolated>True</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-down_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-up_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backward_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\music_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skype_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\step-backward_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\times_ffffff_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
