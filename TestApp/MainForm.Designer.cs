@@ -1,4 +1,6 @@
-﻿namespace SkypeFx
+﻿using SkypeVoiceChanger.Effects;
+
+namespace SkypeVoiceChanger
 {
     partial class MainForm
     {
@@ -51,16 +53,12 @@
             this.buttonMoveEffectUp = new System.Windows.Forms.ToolStripButton();
             this.buttonMoveEffectDown = new System.Windows.Forms.ToolStripButton();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.effectPanel1 = new JSNet.EffectPanel();
+            this.effectPanel1 = new EffectPanel();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // metroTabControl1
             // 
@@ -318,7 +316,7 @@
         private System.Windows.Forms.ToolStripButton buttonRemoveEffect;
         private System.Windows.Forms.ToolStripButton buttonMoveEffectUp;
         private System.Windows.Forms.ToolStripButton buttonMoveEffectDown;
-        private JSNet.EffectPanel effectPanel1;
+        private EffectPanel effectPanel1;
     }
 }
 

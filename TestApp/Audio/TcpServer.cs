@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net.Sockets;
 using System.Threading;
 using System.Diagnostics;
 using System.Net;
 
-namespace SkypeFx
+namespace SkypeVoiceChanger.Audio
 {
     class TcpServer : IDisposable
     {
-        TcpListener listener;
+        private readonly TcpListener listener;
         public event EventHandler<ConnectedEventArgs> Connect;
         public event EventHandler Disconnect;
         public event EventHandler<DataReceivedEventArgs> DataReceived;
@@ -70,7 +67,7 @@ namespace SkypeFx
             var connect = Connect;
             if (connect != null)
             {
-                connect(this, new ConnectedEventArgs() { Stream = stream });
+                connect(this, new ConnectedEventArgs { Stream = stream });
             }
         }
 
@@ -88,18 +85,14 @@ namespace SkypeFx
             var execute = DataReceived;
             if (execute != null)
             {
-                execute(this, new DataReceivedEventArgs() { Buffer = buffer });
+                execute(this, new DataReceivedEventArgs { Buffer = buffer });
             }
         }
-
-        #region IDisposable Members
 
         public void Dispose()
         {
             listener.Stop();
         }
-
-        #endregion
     }
 
     public class DataReceivedEventArgs : EventArgs

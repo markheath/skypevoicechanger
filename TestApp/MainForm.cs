@@ -1,25 +1,27 @@
 ﻿// n.b. icons used are Milky Icons, courtesy of Min Tran - http://min.frexy.com/
+
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.ComponentModel.Composition;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-using NAudio.Wave;
-using JSNet;
-using System.ComponentModel.Composition;
+using SKYPE4COMLib;
+using SkypeFx;
+using SkypeVoiceChanger.Audio;
+using SkypeVoiceChanger.Effects;
 
-namespace SkypeFx
+namespace SkypeVoiceChanger
 {
     [Export(typeof(MainForm))]
     public partial class MainForm : MetroForm
     {
-        MainFormAudioGraph audioGraph;
-        List<ToolStripItem> playbackButtons;
-        
+        readonly AudioPipeline audioPipeline;
+        readonly List<ToolStripItem> playbackButtons;
+        private EffectChain effects;
+        private AudioPlaybackGraph audioPlaybackGraph;
+        private SkypeAudioInterceptor audioInterceptor;
+        private ILog log;
+
         [Import]
         public ICollection<Effect> Effects { get; set; }
 
@@ -28,14 +30,37 @@ namespace SkypeFx
             InitializeComponent();
             timer1.Interval = 500;
             timer1.Start();
-            var log = new RichTextLogger(this.richTextBox1);
-            audioGraph = new MainFormAudioGraph(log);
+            log = new RichTextLogger(this.richTextBox1);
+            this.effects = new EffectChain();
+            audioPlaybackGraph = new AudioPlaybackGraph(log, effects);
+            audioPipeline = new AudioPipeline(effects);
             playbackButtons = new List<ToolStripItem>();
             playbackButtons.Add(buttonPlay);
             playbackButtons.Add(buttonPause);
             playbackButtons.Add(buttonOpen);
             playbackButtons.Add(buttonStop);
             playbackButtons.Add(buttonRewind);           
+        }
+
+        public void ConnectToSkpe()
+        {
+            audioPlaybackGraph.Stop();
+            DisconnectFromSkype();
+            if (audioInterceptor == null)
+            {
+                var skype = new Skype();
+                audioInterceptor = new SkypeAudioInterceptor(skype, skype, log, audioPipeline);
+            }
+            audioInterceptor.Attach();
+        }
+
+        public void DisconnectFromSkype()
+        {
+            if (audioInterceptor != null)
+            {
+                audioInterceptor.Dispose();
+                audioInterceptor = null;
+            }
         }
 
         private void buttonOpen_Click(object sender, EventArgs e)
@@ -45,61 +70,56 @@ namespace SkypeFx
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string fileName = ofd.FileName;
-                audioGraph.LoadFile(fileName);
+                audioPlaybackGraph.LoadFile(fileName);
             }
         }
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            if(!audioGraph.FileLoaded)
+            if (!audioPlaybackGraph.FileLoaded)
             {
                 buttonOpen_Click(sender, e);
             }
-            if (audioGraph.FileLoaded)
+            if (audioPlaybackGraph.FileLoaded)
             {
-                audioGraph.Play(this.Handle);
+                audioPlaybackGraph.Play();
             }
         }
 
         private void buttonPause_Click(object sender, EventArgs e)
         {
-            audioGraph.Pause();
+            audioPlaybackGraph.Pause();
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
-            audioGraph.Stop();
+            audioPlaybackGraph.Stop();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            audioGraph.Dispose();
+            audioPlaybackGraph.Dispose();
         }
 
         private void buttonRewind_Click(object sender, EventArgs e)
         {
-            audioGraph.Rewind();
+            audioPlaybackGraph.Rewind();
         }
 
         private void buttonAddEffect_Click(object sender, EventArgs e)
         {
-            EffectSelectorForm effectSelectorForm = new EffectSelectorForm(Effects);
+            var effectSelectorForm = new EffectSelectorForm(Effects);
             if (effectSelectorForm.ShowDialog(this) == DialogResult.OK)
             {
                 // create a new instance of the selected effect as we may want multiple copies of one effect
-                Effect effect = (Effect)Activator.CreateInstance(effectSelectorForm.SelectedEffect.GetType());
-                audioGraph.AddEffect(effect);
+                var effect = (Effect)Activator.CreateInstance(effectSelectorForm.SelectedEffect.GetType());
+                effects.Add(effect);
                 int index = checkedListBox1.Items.Add(effect, true);
                 checkedListBox1.SelectedIndex = index;
             }
             //MessageBox.Show(String.Format("I have {0} effects", Effects.Count));
         }
         
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            audioGraph.OnTimer();
-        }
-
         private void buttonRemoveEffect_Click(object sender, EventArgs e)
         {
             Effect selectedEffect = (Effect)checkedListBox1.SelectedItem;
@@ -107,7 +127,7 @@ namespace SkypeFx
             {
                 int index = checkedListBox1.SelectedIndex;
                 checkedListBox1.Items.Remove(selectedEffect);
-                audioGraph.RemoveEffect(selectedEffect);
+                effects.Remove(selectedEffect);
                 if(index < checkedListBox1.Items.Count)
                     checkedListBox1.SelectedIndex = index;
                 else
@@ -139,7 +159,7 @@ namespace SkypeFx
             Effect selectedEffect = (Effect)checkedListBox1.SelectedItem;
             if (selectedEffect != null)
             {
-                if (audioGraph.MoveUp(selectedEffect))
+                if (effects.MoveUp(selectedEffect))
                 {
                     int index = checkedListBox1.SelectedIndex;
                     MoveEffect(selectedEffect, index, index - 1);
@@ -162,7 +182,7 @@ namespace SkypeFx
             Effect selectedEffect = (Effect)checkedListBox1.SelectedItem;
             if (selectedEffect != null)
             {
-                if (audioGraph.MoveDown(selectedEffect))
+                if (effects.MoveDown(selectedEffect))
                 {
                     int index = checkedListBox1.SelectedIndex;
                     MoveEffect(selectedEffect, index, index + 1);
@@ -188,11 +208,11 @@ namespace SkypeFx
                     toolStripButtonSkype.Checked = value;
                     if (value)
                     {
-                        audioGraph.ConnectToSkpe();
+                        ConnectToSkpe();
                     }
                     else
                     {
-                        audioGraph.DisconnectFromSkype();
+                        DisconnectFromSkype();
                     }
                     EnablePlaybackButtons(!value);
                 }            

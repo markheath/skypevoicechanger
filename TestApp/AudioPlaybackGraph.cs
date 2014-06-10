@@ -1,25 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JSNet;
 using NAudio.Wave;
+using SkypeFx;
+using SkypeVoiceChanger.Audio;
+using SkypeVoiceChanger.Effects;
 
-namespace SkypeFx
+namespace SkypeVoiceChanger
 {
-    class MainFormAudioGraph : IDisposable
+    /// <summary>
+    /// just for the playback part
+    /// </summary>
+    class AudioPlaybackGraph : IDisposable
     {
         WaveStream outStream;
         IWavePlayer player;
-        EffectChain effects;
         EffectStream effectStream;
-        MicInterceptor interceptor;
         ILog log;
+        private readonly EffectChain effects;
 
-        public MainFormAudioGraph(ILog log)
+        public AudioPlaybackGraph(ILog log, EffectChain effectChain)
         {
             this.log = log;
-            effects = new EffectChain();
+            this.effects = effectChain;
         }
 
         public bool FileLoaded
@@ -30,22 +31,7 @@ namespace SkypeFx
             }
         }
 
-        public void ConnectToSkpe()
-        {
-            Stop();
-            DisconnectFromSkype();
-            interceptor = new MicInterceptor(log, effects);
-            effectStream = interceptor.OutputStream;
-        }
 
-        public void DisconnectFromSkype()
-        {
-            if (interceptor != null)
-            {
-                interceptor.Dispose();
-                interceptor = null;
-            }
-        }
 
         public void LoadFile(string fileName)
         {
@@ -74,9 +60,9 @@ namespace SkypeFx
             }
         }
 
-        public void Play(IntPtr handle)
+        public void Play()
         {
-            effectStream = new EffectStream(effects, outStream);
+            effectStream = new EffectStream(effects, outStream.ToSampleProvider());
             CreatePlayer();
             player.Init(effectStream);
             player.Play();
@@ -86,7 +72,7 @@ namespace SkypeFx
         {
             if (player == null)
             {
-                WaveOut waveOut = new WaveOut(WaveCallbackInfo.NewWindow());
+                var waveOut = new WaveOut();
                 waveOut.DesiredLatency = 200; // 200ms
                 waveOut.NumberOfBuffers = 2;
                 waveOut.DeviceNumber = 0; // default device
@@ -125,7 +111,6 @@ namespace SkypeFx
                 outStream.Dispose();
                 outStream = null;
             }
-            DisconnectFromSkype();
         }
 
         public void Stop()
@@ -155,7 +140,6 @@ namespace SkypeFx
                 effects.Add(effect);
             }
 
-            RIAddEffect(effect.Name);
         }
 
         public void RemoveEffect(Effect effect)
@@ -169,15 +153,8 @@ namespace SkypeFx
                 effects.Remove(effect);
             }
 
-            RIRemoveEffect(effect.Name);
         }
 
-
-        private void RIAddEffect(string effect) {
-        }
-
-        private void RIRemoveEffect(string effect) {
-        }
 
         public bool MoveUp(Effect effect)
         {

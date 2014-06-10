@@ -1,4 +1,4 @@
-﻿namespace SkypeFx
+﻿namespace SkypeVoiceChanger
 {
     partial class EffectSelectorForm
     {

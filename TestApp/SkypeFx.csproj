@@ -8,7 +8,7 @@
     <ProjectGuid>{E4B13002-D46C-4A87-A9D7-2CED4CB3EE17}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SkypeFx</RootNamespace>
+    <RootNamespace>SkypeVoiceChanger</RootNamespace>
     <AssemblyName>SkypeVoiceChanger</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -99,12 +99,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioOutputInfo.cs" />
+    <Compile Include="Audio\AudioPipeline.cs" />
+    <Compile Include="Audio\IAudioProcessor.cs" />
+    <Compile Include="Audio\SkypeAudioInterceptor.cs" />
+    <Compile Include="Audio\SkypeBufferProvider.cs" />
+    <Compile Include="Audio\SkypeStatus.cs" />
+    <Compile Include="Audio\TcpServer.cs" />
     <Compile Include="EffectSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EffectSelectorForm.Designer.cs">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Effects\Chorus.cs" />
+    <Compile Include="Effects\Delay.cs" />
+    <Compile Include="Effects\DelayPong.cs" />
+    <Compile Include="Effects\Effect.cs" />
+    <Compile Include="Effects\EffectChain.cs" />
+    <Compile Include="Effects\EffectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Effects\EffectPanel.Designer.cs">
+      <DependentUpon>EffectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\EffectSliderPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Effects\EffectSliderPanel.Designer.cs">
+      <DependentUpon>EffectSliderPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\EffectStream.cs" />
+    <Compile Include="Effects\FlangeBaby.cs" />
+    <Compile Include="Effects\Flanger.cs" />
+    <Compile Include="Effects\IEffectGui.cs" />
+    <Compile Include="Effects\IEffectSliderGui.cs" />
+    <Compile Include="Effects\Slider.cs" />
+    <Compile Include="Effects\SuperPitch.cs" />
+    <Compile Include="Effects\Tremolo.cs" />
     <Compile Include="Icons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,12 +149,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainFormAudioGraph.cs" />
-    <Compile Include="MicInterceptor.cs" />
+    <Compile Include="AudioPlaybackGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EffectSelectorForm.resx">
       <DependentUpon>EffectSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Effects\EffectPanel.resx">
+      <DependentUpon>EffectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Effects\EffectSliderPanel.resx">
+      <DependentUpon>EffectSliderPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Icons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -152,14 +191,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SkypeBufferStream.cs" />
-    <Compile Include="TcpServer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JSNet\JSNet.csproj">
-      <Project>{9A41CAC8-1D4F-44D6-B324-E0076D0AD590}</Project>
-      <Name>JSNet</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -237,6 +268,7 @@
   <ItemGroup>
     <None Include="Resources\times_ffffff_32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
