@@ -9,7 +9,6 @@ namespace SkypeFx
 {
     class Program
     {
-        bool customerFeedbackOptIn = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,13 +17,10 @@ namespace SkypeFx
         {
             Program p = new Program();
             p.Run();
-            RITeardown();   
         }
 
         public void Run()
         {
-            customerFeedbackOptIn = Properties.Settings.Default.CustomerFeedbackOptIn;
-            RISetup();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Compose();
@@ -53,13 +49,6 @@ namespace SkypeFx
         [Import(typeof(MainForm))]
         public Form MainWindow { get; set; }
 
-        private void RISetup()
-        {
-        }
-
-        private static void RITeardown()
-        {
-        }
 
     }
 }

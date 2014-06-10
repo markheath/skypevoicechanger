@@ -55,9 +55,9 @@
             this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 57);
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 102);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(159, 364);
+            this.checkedListBox1.Size = new System.Drawing.Size(159, 319);
             this.checkedListBox1.TabIndex = 3;
             this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
@@ -78,9 +78,9 @@
             this.buttonRemoveEffect,
             this.buttonMoveEffectUp,
             this.buttonMoveEffectDown});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(20, 60);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(717, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(677, 39);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -214,9 +214,9 @@
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(386, 0);
+            this.richTextBox1.Location = new System.Drawing.Point(404, 57);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(319, 51);
+            this.richTextBox1.Size = new System.Drawing.Size(312, 51);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using NAudio.Wave;
 using JSNet;
 using System.ComponentModel.Composition;
@@ -14,7 +15,7 @@ using System.ComponentModel.Composition;
 namespace SkypeFx
 {
     [Export(typeof(MainForm))]
-    public partial class MainForm : Form
+    public partial class MainForm : MetroForm
     {
         MainFormAudioGraph audioGraph;
         List<ToolStripItem> playbackButtons;
