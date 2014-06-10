@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using SKYPE4COMLib;
@@ -22,6 +21,7 @@ namespace SkypeVoiceChanger
         private readonly AudioPlaybackGraph audioPlaybackGraph;
         private SkypeAudioInterceptor audioInterceptor;
         private readonly ILog log;
+        private ConnectionStatusPage connectionStatusPage;
 
         [Import]
         public ICollection<Effect> Effects { get; set; }
@@ -31,7 +31,7 @@ namespace SkypeVoiceChanger
             InitializeComponent();
             tabPageRecord.Controls.Add(new RecordingPage() { Dock = DockStyle.Fill });
             tabPageAbout.Controls.Add(new AboutPage() { Dock = DockStyle.Fill });
-            var connectionStatusPage = new ConnectionStatusPage() {Dock = DockStyle.Fill};
+            connectionStatusPage = new ConnectionStatusPage() {Dock = DockStyle.Fill};
             tabPage1.Controls.Add(connectionStatusPage);
             log = connectionStatusPage.Log;
             this.effects = new EffectChain();
@@ -45,14 +45,18 @@ namespace SkypeVoiceChanger
             playbackButtons.Add(buttonRewind);
         }
 
-        public void ConnectToSkpe()
+        public void ConnectToSkype()
         {
             audioPlaybackGraph.Stop();
             DisconnectFromSkype();
             if (audioInterceptor == null)
             {
                 var skype = new Skype();
+
                 audioInterceptor = new SkypeAudioInterceptor(skype, skype, log, audioPipeline);
+
+                audioInterceptor.SkypeStatusChanged += AudioInterceptorOnSkypeStatusChanged;
+                AudioInterceptorOnSkypeStatusChanged(this, EventArgs.Empty);// get initial state set up
             }
             audioInterceptor.Attach();
         }
@@ -61,6 +65,7 @@ namespace SkypeVoiceChanger
         {
             if (audioInterceptor != null)
             {
+                audioInterceptor.SkypeStatusChanged -= AudioInterceptorOnSkypeStatusChanged;
                 audioInterceptor.Dispose();
                 audioInterceptor = null;
             }
@@ -125,7 +130,7 @@ namespace SkypeVoiceChanger
         
         private void buttonRemoveEffect_Click(object sender, EventArgs e)
         {
-            Effect selectedEffect = (Effect)checkedListBox1.SelectedItem;
+            var selectedEffect = (Effect)checkedListBox1.SelectedItem;
             if (selectedEffect != null)
             {
                 int index = checkedListBox1.SelectedIndex;
@@ -140,7 +145,7 @@ namespace SkypeVoiceChanger
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Effect effect = (Effect)checkedListBox1.SelectedItem;
+            var effect = (Effect)checkedListBox1.SelectedItem;
             if (effect != null)
             {
                 effectPanel1.Initialize(effect);
@@ -153,21 +158,20 @@ namespace SkypeVoiceChanger
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {            
-            Effect effect = (Effect)checkedListBox1.Items[e.Index];
+            var effect = (Effect)checkedListBox1.Items[e.Index];
             effect.Enabled = e.NewValue == CheckState.Checked;
         }
 
         private void buttonMoveEffectUp_Click(object sender, EventArgs e)
         {
-            Effect selectedEffect = (Effect)checkedListBox1.SelectedItem;
+            var selectedEffect = (Effect)checkedListBox1.SelectedItem;
             if (selectedEffect != null)
             {
                 if (effects.MoveUp(selectedEffect))
                 {
                     int index = checkedListBox1.SelectedIndex;
                     MoveEffect(selectedEffect, index, index - 1);
-                }
-                
+                }                
             }
         }
 
@@ -182,7 +186,7 @@ namespace SkypeVoiceChanger
 
         private void buttonMoveEffectDown_Click(object sender, EventArgs e)
         {
-            Effect selectedEffect = (Effect)checkedListBox1.SelectedItem;
+            var selectedEffect = (Effect)checkedListBox1.SelectedItem;
             if (selectedEffect != null)
             {
                 if (effects.MoveDown(selectedEffect))
@@ -211,7 +215,7 @@ namespace SkypeVoiceChanger
                     toolStripButtonSkype.Checked = value;
                     if (value)
                     {
-                        ConnectToSkpe();
+                        ConnectToSkype();
                     }
                     else
                     {
@@ -237,12 +241,19 @@ namespace SkypeVoiceChanger
 
             Properties.Settings appSettings = Properties.Settings.Default;
 
+            ConnectToSkype();
+
+
             if (appSettings.FirstRun) {
 
                 appSettings.FirstRun = false;
                 appSettings.Save();
             }
+        }
 
+        private void AudioInterceptorOnSkypeStatusChanged(object sender, EventArgs eventArgs)
+        {
+            connectionStatusPage.ConnectionStatus = audioInterceptor.SkypeStatus;
         }
     }
 }
