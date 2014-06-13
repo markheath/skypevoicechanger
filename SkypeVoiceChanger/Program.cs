@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SkypeVoiceChanger
@@ -21,9 +22,27 @@ namespace SkypeVoiceChanger
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Compose();
+            Application.ThreadException += ApplicationOnThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             Application.Run(MainWindow);
         }
-        
+
+        private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        {
+            // Exception on background thread
+            // TODO: improve on this (log and allow reporting)
+            if (unhandledExceptionEventArgs.ExceptionObject is Exception)
+            MessageBox.Show(((Exception)(unhandledExceptionEventArgs.ExceptionObject)).Message, "Unexpected Error");
+        }
+
+        private void ApplicationOnThreadException(object sender, ThreadExceptionEventArgs threadExceptionEventArgs)
+        {
+            // Exception on GUI Thread
+            // TODO: improve on this (log and allow reporting)
+            MessageBox.Show(threadExceptionEventArgs.Exception.Message, "Unexpected Error");
+
+        }
+
         /// <summary>
         /// use managed extensibility framework to discover effects and load them into the main form
         /// </summary>
