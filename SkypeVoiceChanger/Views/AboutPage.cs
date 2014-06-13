@@ -23,6 +23,9 @@ namespace SkypeVoiceChanger
             "Scott Stillwell (http://www.stillwellaudio.com/)\r\n" +
             "Cockos REAPER (http://www.reaper.fm/)\r\n" +
             "Min Tran (http://min.frexy.com/)";
+
+            var ver = GetType().Assembly.GetName().Version;
+            metroLabelTitle.Text = String.Format("Skype Voice Changer {0}.{1}", ver.Major, ver.Minor);
         }
 
         private void metroLink1_Click(object sender, EventArgs e)

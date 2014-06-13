@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.textBoxCredits = new MetroFramework.Controls.MetroTextBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.textBoxCredits = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabelTitle = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,24 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // textBoxCredits
+            // 
+            this.textBoxCredits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCredits.Lines = new string[0];
+            this.textBoxCredits.Location = new System.Drawing.Point(17, 76);
+            this.textBoxCredits.MaxLength = 32767;
+            this.textBoxCredits.Multiline = true;
+            this.textBoxCredits.Name = "textBoxCredits";
+            this.textBoxCredits.PasswordChar = '\0';
+            this.textBoxCredits.ReadOnly = true;
+            this.textBoxCredits.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.textBoxCredits.SelectedText = "";
+            this.textBoxCredits.Size = new System.Drawing.Size(582, 175);
+            this.textBoxCredits.TabIndex = 3;
+            this.textBoxCredits.UseSelectable = true;
             // 
             // metroButton1
             // 
@@ -85,39 +103,21 @@
             this.metroLabel2.TabIndex = 8;
             this.metroLabel2.Text = "Copyright © Mark Heath 2014";
             // 
-            // metroLabel1
+            // metroLabelTitle
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel1.Location = new System.Drawing.Point(15, 11);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(182, 19);
-            this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "Skype Voice Changer v2.0";
-            // 
-            // textBoxCredits
-            // 
-            this.textBoxCredits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCredits.Lines = new string[0];
-            this.textBoxCredits.Location = new System.Drawing.Point(17, 76);
-            this.textBoxCredits.MaxLength = 32767;
-            this.textBoxCredits.Multiline = true;
-            this.textBoxCredits.Name = "textBoxCredits";
-            this.textBoxCredits.PasswordChar = '\0';
-            this.textBoxCredits.ReadOnly = true;
-            this.textBoxCredits.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textBoxCredits.SelectedText = "";
-            this.textBoxCredits.Size = new System.Drawing.Size(582, 175);
-            this.textBoxCredits.TabIndex = 3;
-            this.textBoxCredits.UseSelectable = true;
+            this.metroLabelTitle.AutoSize = true;
+            this.metroLabelTitle.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabelTitle.Location = new System.Drawing.Point(15, 11);
+            this.metroLabelTitle.Name = "metroLabelTitle";
+            this.metroLabelTitle.Size = new System.Drawing.Size(182, 19);
+            this.metroLabelTitle.TabIndex = 7;
+            this.metroLabelTitle.Text = "Skype Voice Changer v2.0";
             // 
             // AboutPage
             // 
             this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.metroLabel2);
-            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.metroLabelTitle);
             this.Controls.Add(this.metroPanel1);
             this.Name = "AboutPage";
             this.Size = new System.Drawing.Size(627, 303);
@@ -132,7 +132,7 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroLink metroLink1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel metroLabelTitle;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroTextBox textBoxCredits;
 
