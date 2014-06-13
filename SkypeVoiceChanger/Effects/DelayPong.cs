@@ -2,18 +2,11 @@
 // License: GPL - http://www.gnu.org/licenses/gpl.html
 // ported to .NET by Mark Heath
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-
 namespace SkypeVoiceChanger.Effects
 {
     /// <summary>
     /// ping-pong beatsync delay
     /// </summary>
-        //[Export(typeof(Effect))]
     public class DelayPong : Effect
     {
         public DelayPong()

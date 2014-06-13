@@ -24,15 +24,8 @@
 //
 // Ported to .NET by Mark Heath, 28/11/2008
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-
 namespace SkypeVoiceChanger.Effects
 {
-        [Export(typeof(Effect))]
     public class FlangeBaby : Effect
     {
         public FlangeBaby()

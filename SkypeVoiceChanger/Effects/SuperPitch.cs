@@ -1,10 +1,8 @@
 ﻿// .NET port of Super-pitch JS effect included with Cockos REAPER
 using System;
-using System.ComponentModel.Composition;
 
 namespace SkypeVoiceChanger.Effects
 {
-        [Export(typeof(Effect))]
     public class SuperPitch : Effect
     {
         int bufsize;

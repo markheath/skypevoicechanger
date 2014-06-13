@@ -1,8 +1,6 @@
 ﻿// original effect 4x4 from REAPER
 // Ported to .NET by Mark Heath
 
-using System.ComponentModel.Composition;
-
 namespace SkypeVoiceChanger.Effects
 {
     //[Export(typeof(Effect))]

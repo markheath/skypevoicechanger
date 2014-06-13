@@ -1,7 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Composition;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using SkypeVoiceChanger.Effects;
 
 namespace SkypeVoiceChanger
 {
@@ -21,10 +22,18 @@ namespace SkypeVoiceChanger
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Compose();
             Application.ThreadException += ApplicationOnThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
-            Application.Run(MainWindow);
+            var mainWindow = new MainForm(new List<Effect>() {
+                new FlangeBaby(),
+                new SuperPitch(),
+                new Chorus(),
+                new Delay(),
+                new Tremolo(),
+                new EventHorizon()
+                
+                } );
+            Application.Run(mainWindow);
         }
 
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
@@ -42,25 +51,5 @@ namespace SkypeVoiceChanger
             MessageBox.Show(threadExceptionEventArgs.Exception.Message, "Unexpected Error");
 
         }
-
-        /// <summary>
-        /// use managed extensibility framework to discover effects and load them into the main form
-        /// </summary>
-        private void Compose()
-        {
-            var catalog = new AggregatingComposablePartCatalog();
-            var mainAssemblyCatalog = new AttributedAssemblyPartCatalog(this.GetType().Assembly);
-
-            catalog.Catalogs.Add(mainAssemblyCatalog);
-            var container = new CompositionContainer(catalog);
-            
-            container.AddPart(this);
-            container.Compose();
-        }
-
-        [Import(typeof(MainForm))]
-        public Form MainWindow { get; set; }
-
-
     }
 }

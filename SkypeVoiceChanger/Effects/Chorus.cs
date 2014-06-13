@@ -2,15 +2,8 @@
 // License: GPL - http://www.gnu.org/licenses/gpl.html
 // poreted to .NET by Mark Heath
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-
 namespace SkypeVoiceChanger.Effects
 {
-    [Export(typeof(Effect))]
     public class Chorus : Effect
     {
         public Chorus()

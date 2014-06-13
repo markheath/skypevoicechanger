@@ -2,7 +2,6 @@
 // License: GPL - http://www.gnu.org/licenses/gpl.html
 // Ported to .NET by Mark Heath
 using System;
-using System.ComponentModel.Composition;
 
 namespace SkypeVoiceChanger.Effects
 {

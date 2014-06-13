@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using SKYPE4COMLib;
@@ -12,7 +11,6 @@ using SkypeVoiceChanger.Views;
 
 namespace SkypeVoiceChanger
 {
-    [Export(typeof(MainForm))]
     public partial class MainForm : MetroForm
     {
         readonly AudioPipeline audioPipeline;
@@ -24,7 +22,6 @@ namespace SkypeVoiceChanger
         private readonly EffectsPage effectsPage;
         private bool startup = true;
 
-        [ImportingConstructor]
         public MainForm(ICollection<Effect> effects)
         {
             InitializeComponent();

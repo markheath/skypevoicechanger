@@ -23,14 +23,11 @@
 //THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //Ported to .NET by Mark Heath
 
-using System.ComponentModel.Composition;
-
 namespace SkypeVoiceChanger.Effects
 {
     /// <summary>
     /// peak-eating limiter
     /// </summary>
-    [Export(typeof(Effect))]
     public class EventHorizon : Effect
     {
         public EventHorizon()

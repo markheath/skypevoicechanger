@@ -2,11 +2,9 @@
 // License: GPL - http://www.gnu.org/licenses/gpl.html
 // ported to .NET by Mark Heath
 using System;
-using System.ComponentModel.Composition;
 
 namespace SkypeVoiceChanger.Effects
 {
-    [Export(typeof(Effect))]
     public class Delay : Effect
     {
         float delaypos;

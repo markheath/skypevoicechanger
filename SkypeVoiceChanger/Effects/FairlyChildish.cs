@@ -23,8 +23,6 @@
 //THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //Ported to .NET by Mark Heath
 
-using System.ComponentModel.Composition;
-
 namespace SkypeVoiceChanger.Effects
 
 {

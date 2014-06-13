@@ -24,7 +24,6 @@
 //Ported to .NET by Mark Heath, http://mark-dot-net.blogspot.com
 
 using System;
-using System.ComponentModel.Composition;
 
 namespace SkypeVoiceChanger.Effects
 {
