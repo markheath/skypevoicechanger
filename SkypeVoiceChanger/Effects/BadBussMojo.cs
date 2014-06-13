@@ -31,7 +31,7 @@ namespace SkypeVoiceChanger.Effects
     /// <summary>
     /// nonlinear waveshaper
     /// </summary>
-    [Export(typeof(Effect))]
+    //[Export(typeof(Effect))]
     public class BadBussMojo : Effect
     {
         public BadBussMojo()

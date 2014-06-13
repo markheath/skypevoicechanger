@@ -5,7 +5,7 @@ using System.ComponentModel.Composition;
 
 namespace SkypeVoiceChanger.Effects
 {
-    [Export(typeof(Effect))]
+    //[Export(typeof(Effect))]
     public class FourByFourEQ : Effect
     {
         public FourByFourEQ()

@@ -13,7 +13,7 @@ namespace SkypeVoiceChanger.Effects
     /// <summary>
     /// ping-pong beatsync delay
     /// </summary>
-        [Export(typeof(Effect))]
+        //[Export(typeof(Effect))]
     public class DelayPong : Effect
     {
         public DelayPong()

@@ -36,7 +36,7 @@ namespace SkypeVoiceChanger.Audio
             this.skype = skype;
             if (!skype.Client.IsRunning)
             {
-                log.Error("Skype is not running");
+                log.Error("Skype is not running - check you have installed and started the desktop version of Skype");
             }
 
             skypeEvents.AttachmentStatus += OnSkypeAttachmentStatus;

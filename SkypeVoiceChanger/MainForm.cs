@@ -22,6 +22,7 @@ namespace SkypeVoiceChanger
         private readonly ILog log;
         private readonly ConnectionStatusPage connectionStatusPage;
         private readonly EffectsPage effectsPage;
+        private bool startup = true;
 
         [ImportingConstructor]
         public MainForm(ICollection<Effect> effects)
@@ -37,7 +38,7 @@ namespace SkypeVoiceChanger
             tabPage2.Controls.Add(effectsPage);
             log = connectionStatusPage.Log;
             audioPipeline = new AudioPipeline(effectChain);
-
+            
         }
 
         public void ConnectToSkype()
@@ -77,7 +78,8 @@ namespace SkypeVoiceChanger
         private void MainForm_Load(object sender, EventArgs e) {
 
             Properties.Settings appSettings = Properties.Settings.Default;
-
+            metroTabControl1.SelectedIndex = 0; // select the first tab
+            metroTabControl1.SelectedIndexChanged += (s, a) => startup = false;
             ConnectToSkype();
 
             if (appSettings.FirstRun) {
@@ -91,6 +93,10 @@ namespace SkypeVoiceChanger
         {
             connectionStatusPage.ConnectionStatus = audioInterceptor.SkypeStatus;
             effectsPage.ConnectionStatus = audioInterceptor.SkypeStatus;
+            if (startup && audioInterceptor.SkypeStatus == SkypeStatus.WaitingForCall)
+            {
+                metroTabControl1.SelectedIndex = 1; // move to effects page
+            }
         }
     }
 }

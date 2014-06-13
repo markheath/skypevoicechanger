@@ -31,7 +31,7 @@ namespace SkypeVoiceChanger.Effects
     /// <summary>
     /// desc:compressor/limiter, similar to F670
     /// </summary>
-    [Export(typeof(Effect))]
+    //[Export(typeof(Effect))]
     public class FairlyChildish : Effect
     {
         public FairlyChildish()
