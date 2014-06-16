@@ -23,12 +23,12 @@ namespace SkypeVoiceChanger
 
         private void metroLink1_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.markheath.net/skypevoicechangerpro");
+            Process.Start("http://www.markheath.net/skypevoicechanger");
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.markheath.net/skypevoicechangerpro");
+            Process.Start("http://www.markheath.net/skypevoicechanger");
         }
     }
 }
