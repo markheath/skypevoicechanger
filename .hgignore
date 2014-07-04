@@ -1,0 +1,8 @@
+syntax:glob
+
+publish/
+bin/
+obj/
+*.user
+*.suo
+*.orig

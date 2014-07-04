@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E4B13002-D46C-4A87-A9D7-2CED4CB3EE17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SkypeVoiceChanger</RootNamespace>
+    <AssemblyName>SkypeVoiceChanger</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://skypefx.codeplex.com/releases/clickonce/</InstallUrl>
+    <SupportUrl>http://skypefx.codeplex.com</SupportUrl>
+    <ProductName>Skype Voice Changer</ProductName>
+    <PublisherName>Mark Heath</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.3.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A28E2F874ADCE34FEF29DD7F319EAEB49582403E</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SkypeVoiceChanger_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MetroFramework, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WinForms-ModernUI.1.3.0.1\lib\net40\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WinForms-ModernUI.1.3.0.1\lib\net40\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WinForms-ModernUI.1.3.0.1\lib\net40\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=1.7.1.17, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NAudio.1.7.1\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorForm.Designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AboutPage.Designer.cs">
+      <DependentUpon>AboutPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Audio\AudioOutputInfo.cs" />
+    <Compile Include="Audio\AudioPipeline.cs" />
+    <Compile Include="Audio\IAudioProcessor.cs" />
+    <Compile Include="Audio\SkypeAudioInterceptor.cs" />
+    <Compile Include="Audio\SkypeBufferProvider.cs" />
+    <Compile Include="Audio\SkypeStatus.cs" />
+    <Compile Include="Audio\TcpServer.cs" />
+    <Compile Include="EffectSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EffectSelectorForm.Designer.cs">
+      <DependentUpon>EffectSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\BadBussMojo.cs" />
+    <Compile Include="Effects\Chorus.cs" />
+    <Compile Include="Effects\Delay.cs" />
+    <Compile Include="Effects\DelayPong.cs" />
+    <Compile Include="Effects\Effect.cs" />
+    <Compile Include="Effects\EffectChain.cs" />
+    <Compile Include="Effects\EffectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Effects\EffectPanel.Designer.cs">
+      <DependentUpon>EffectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\EffectSliderPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Effects\EffectSliderPanel.Designer.cs">
+      <DependentUpon>EffectSliderPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\EffectStream.cs" />
+    <Compile Include="Effects\EventHorizon.cs" />
+    <Compile Include="Effects\FairlyChildish.cs" />
+    <Compile Include="Effects\FastAttackCompressor1175.cs" />
+    <Compile Include="Effects\FlangeBaby.cs" />
+    <Compile Include="Effects\Flanger.cs" />
+    <Compile Include="Effects\FourByFourEQ.cs" />
+    <Compile Include="Effects\IEffectGui.cs" />
+    <Compile Include="Effects\IEffectSliderGui.cs" />
+    <Compile Include="Effects\Slider.cs" />
+    <Compile Include="Effects\SuperPitch.cs" />
+    <Compile Include="Effects\ThreeBandEQ.cs" />
+    <Compile Include="Effects\Tremolo.cs" />
+    <Compile Include="Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ILog.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Audio\AudioPlaybackGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ConnectionStatusPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ConnectionStatusPage.Designer.cs">
+      <DependentUpon>ConnectionStatusPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EffectsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\EffectsPage.Designer.cs">
+      <DependentUpon>EffectsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecordingPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\RecordingPage.Designer.cs">
+      <DependentUpon>RecordingPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EffectSelectorForm.resx">
+      <DependentUpon>EffectSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Effects\EffectPanel.resx">
+      <DependentUpon>EffectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Effects\EffectSliderPanel.resx">
+      <DependentUpon>EffectSliderPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorForm.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Views\AboutPage.resx">
+      <DependentUpon>AboutPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConnectionStatusPage.resx">
+      <DependentUpon>ConnectionStatusPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EffectsPage.resx">
+      <DependentUpon>EffectsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RecordingPage.resx">
+      <DependentUpon>RecordingPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="SkypeVoiceChanger_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SKYPE4COMLib">
+      <Guid>{03282B5D-B38F-469D-849A-09B0A7F4881B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>True</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-down_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-up_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backward_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\music_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skype_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\step-backward_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\times_ffffff_32.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!--http://stackoverflow.com/a/15080048/7532 -->
+  <Target Name="BeforePublish">
+    <Error Condition="'$(DebugSymbols)' == 'true'" Text="You attempted to publish a configuration that defines the DEBUG constant!" />
+  </Target>
+</Project>
