@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NAudio.Wave;
 using SkypeVoiceChanger.Effects;
 
@@ -9,14 +10,21 @@ namespace SkypeVoiceChanger.Audio
     /// </summary>
     public class AudioPlaybackGraph : IDisposable
     {
+        private readonly EffectChain effectChain;
         private WaveStream outStream;
         private IWavePlayer player;
         private EffectStream effectStream;
-        private readonly EffectChain effectChain;
 
         public AudioPlaybackGraph(EffectChain effectChain)
         {
             this.effectChain = effectChain;
+            effectChain.Modified += EffectChainOnModified;
+        }
+
+        private void EffectChainOnModified(object sender, EventArgs eventArgs)
+        {
+            if (effectStream != null)
+                effectStream.UpdateEffectChain(effectChain.ToArray());
         }
 
         public bool FileLoaded
@@ -56,7 +64,8 @@ namespace SkypeVoiceChanger.Audio
 
         public void Play()
         {
-            effectStream = new EffectStream(effectChain, outStream.ToSampleProvider());
+            effectStream = new EffectStream(outStream.ToSampleProvider());
+            effectStream.UpdateEffectChain(effectChain.ToArray());
             CreatePlayer();
             player.Init(effectStream);
             player.Play();
@@ -120,57 +129,6 @@ namespace SkypeVoiceChanger.Audio
             if (outStream != null)
             {
                 outStream.Position = 0;
-            }
-        }
-
-        public void AddEffect(Effect effect)
-        {
-            if (effectStream != null)
-            {
-                effectStream.AddEffect(effect);
-            }
-            else
-            {
-                effectChain.Add(effect);
-            }
-
-        }
-
-        public void RemoveEffect(Effect effect)
-        {
-            if (effectStream != null)
-            {
-                effectStream.RemoveEffect(effect);
-            }
-            else
-            {
-                effectChain.Remove(effect);
-            }
-
-        }
-
-
-        public bool MoveUp(Effect effect)
-        {
-            if (effectStream != null)
-            {
-                return effectStream.MoveUp(effect);
-            }
-            else
-            {
-                return effectChain.MoveUp(effect);
-            }
-        }
-
-        public bool MoveDown(Effect effect)
-        {
-            if (effectStream != null)
-            {
-                return effectStream.MoveDown(effect);
-            }
-            else
-            {
-                return effectChain.MoveDown(effect);
             }
         }
     }

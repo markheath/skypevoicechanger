@@ -1,5 +1,7 @@
 ﻿// .NET port of Super-pitch JS effect included with Cockos REAPER
 using System;
+using System.Diagnostics;
+using System.Threading;
 
 namespace SkypeVoiceChanger.Effects
 {
@@ -29,8 +31,8 @@ namespace SkypeVoiceChanger.Effects
         {
             AddSlider(0, -100, 100, 1, "Pitch adjust (cents)");
             AddSlider(5, -12, 12, 1, "Pitch adjust (semitones)");
-            AddSlider(0, -12, 12, 1, "Pitch adjust (octaves)");
-            AddSlider(50, 0, 200, 1, "Window size (ms)");
+            AddSlider(0, -8, 8, 1, "Pitch adjust (octaves)"); // mrh 12 octaves up causes issues, reigning this in a bit
+            AddSlider(50, 1, 200, 1, "Window size (ms)"); // mrh minimum window size set to 1 as 0 seems to cause issues
             AddSlider(20, 0.05f, 50, 0.5f, "Overlap size (ms)");
             AddSlider(0, -120, 6, 1, "Wet mix (dB)");
             AddSlider(-120, -120, 6, 1, "Dry mix (dB)");
@@ -61,10 +63,11 @@ namespace SkypeVoiceChanger.Effects
             base.Init();
         }
 
-        public override void Slider()
+        protected override void Slider()
         {
             filter = slider8 > 0.5;
             int bsnew = (int)(Math.Min(slider4, 1000) * 0.001 * SampleRate);
+            //   bsnew=(min(slider4,1000)*0.001*srate)|0;
             if (bsnew != bufsize)
             {
                 bufsize = bsnew;
@@ -105,7 +108,7 @@ namespace SkypeVoiceChanger.Effects
             wetmix = pow(2, (slider6 / 6));
         }
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             int iv0 = (int)(v0);
             float frac0 = v0 - iv0;

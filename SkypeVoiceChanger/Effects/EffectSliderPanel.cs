@@ -26,7 +26,8 @@ namespace SkypeVoiceChanger.Effects
                 this.slider.Value = value;
                 SetSliderTextBox(value);
                 // put it back to show granularity
-                metroTrackBar1.Value = SliderToTrackBar();
+                var trackBarVal = SliderToTrackBar(slider.Minimum, slider.Maximum);
+                metroTrackBar1.Value = trackBarVal;
                 RaiseValueChangedEvent(e);
             }
         }
@@ -69,15 +70,17 @@ namespace SkypeVoiceChanger.Effects
             return value;
         }
 
-        int SliderToTrackBar()
+        int SliderToTrackBar(float min, float max)
         {
-            return (int) (((slider.Value - slider.Minimum) / (slider.Maximum - slider.Minimum)) * 1000.0f);
+            var val = (int) (((slider.Value - min) / (max - min)) * 1000.0f);
+            if (val < min) val = (int)min;
+            return val;
         }
 
         public void Initialize(Slider slider)
         {
             this.slider = slider;
-            this.metroTrackBar1.Value = SliderToTrackBar();
+            this.metroTrackBar1.Value = SliderToTrackBar(slider.Minimum, slider.Maximum);
             this.labelDescription.Text = slider.Description;
             this.metroTrackBar1.LargeChange = (int)(metroTrackBar1.Maximum * (slider.Increment / (slider.Maximum - slider.Minimum)));
             SetSliderTextBox(slider.Value);

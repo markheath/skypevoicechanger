@@ -1,4 +1,6 @@
-﻿using NAudio.Wave;
+﻿using System;
+using System.Linq;
+using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using SkypeVoiceChanger.Effects;
 
@@ -18,14 +20,17 @@ namespace SkypeVoiceChanger.Audio
             // convert to 32 bit floating point
             var bufferStream32 = new Pcm16BitToSampleProvider(bufferStream);
             // pass through the effects
-            var effectStream = new EffectStream(effects, bufferStream32);
+            var effectStream = new EffectStream(bufferStream32);
             // now mix in any sound effects
-            this.mixer = new MixingSampleProvider(effectStream.WaveFormat);
-            this.mixer.AddMixerInput(effectStream);
+            mixer = new MixingSampleProvider(effectStream.WaveFormat);
+            mixer.AddMixerInput(effectStream);
 
             // and convert back to 16 bit ready to be given back to skype
-            this.outputProvider = new SampleToWaveProvider16(mixer);
+            outputProvider = new SampleToWaveProvider16(mixer);
+
+            effects.Modified += (s,a) => effectStream.UpdateEffectChain(effects.ToArray());
         }
+
 
         public void ProcessOutgoing(byte[] buffer, int count)
         {

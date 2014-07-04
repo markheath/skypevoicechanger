@@ -1,39 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NAudio.Wave;
-using System.Diagnostics;
 
 namespace SkypeVoiceChanger.Effects
 {
     public class EffectStream : ISampleProvider
     {
-        private readonly EffectChain effects;
+        private readonly List<Effect> effects;
         private readonly ISampleProvider sourceProvider;
-        private object effectLock = new object();
+        private readonly object effectLock = new object();
 
-        public EffectStream(EffectChain effects, ISampleProvider sourceProvider)
+        public EffectStream(ISampleProvider sourceProvider)
         {
-            this.effects = effects;
+            this.effects = new List<Effect>();
             this.sourceProvider = sourceProvider;
             foreach (var effect in effects)
             {
                 InitialiseEffect(effect);
             }
         }
-
-        public EffectStream(ISampleProvider sourceStream)
-            : this(new EffectChain(), sourceStream)
-        {
-        }
-
-        public EffectStream(Effect effect, ISampleProvider sourceStream)
-            : this(sourceStream)
-        {
-            AddEffect(effect);
-        }
-
+        
         public WaveFormat WaveFormat
         {
             get { return sourceProvider.WaveFormat; }
@@ -57,7 +43,6 @@ namespace SkypeVoiceChanger.Effects
             {
                 effect.Block(samples);
             }
-
             
             for(int sample = 0; sample < samples; sample++)
             {
@@ -72,7 +57,7 @@ namespace SkypeVoiceChanger.Effects
                 // run these samples through the effect
                 foreach (var effect in effects.Where(e => e.Enabled))
                 {
-                    effect.Sample(ref sampleLeft, ref sampleRight);
+                    effect.OnSample(ref sampleLeft, ref sampleRight);
                 }
 
                 // put them back
@@ -85,28 +70,16 @@ namespace SkypeVoiceChanger.Effects
         }
 
 
-        public bool MoveUp(Effect effect)
+        public void UpdateEffectChain(Effect[] newEffects)
         {
             lock (effectLock)
             {
-                return effects.MoveUp(effect);
-            }
-        }
-
-        public bool MoveDown(Effect effect)
-        {
-            lock (effectLock)
-            {
-                return effects.MoveDown(effect);
-            }
-        }
-
-        public void AddEffect(Effect effect)
-        {
-            InitialiseEffect(effect);
-            lock (effectLock)
-            {
-                this.effects.Add(effect);
+                foreach (var newEffect in newEffects.Except(effects))
+                {
+                    InitialiseEffect(newEffect);
+                }
+                effects.Clear();
+                effects.AddRange(newEffects);
             }
         }
 
@@ -114,7 +87,7 @@ namespace SkypeVoiceChanger.Effects
         {
             effect.SampleRate = WaveFormat.SampleRate;
             effect.Init();
-            effect.Slider();
+            effect.SliderChanged();
         }
 
         public bool RemoveEffect(Effect effect)

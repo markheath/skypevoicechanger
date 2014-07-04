@@ -42,7 +42,7 @@ namespace SkypeVoiceChanger.Effects
             delaypos = 0;
         }
 
-        public override void Slider()
+        protected override void Slider()
         {
             odelay=delaylen;
             delaylen=Math.Min(slider1 * SampleRate / 1000,500000);
@@ -99,7 +99,7 @@ namespace SkypeVoiceChanger.Effects
             drymix2 = pow(2,(slider5/6));
         }
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             int dpint = (int)delaypos*2;
             float os1=buffer[dpint+0];

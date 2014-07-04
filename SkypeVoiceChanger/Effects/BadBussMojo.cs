@@ -82,7 +82,7 @@ namespace SkypeVoiceChanger.Effects
         float ntsv;
         float drive = 0; // never assigned to
 
-        public override void Slider()
+        protected override void Slider()
         {
             pt = slider1;
             nt = slider2;
@@ -109,7 +109,7 @@ namespace SkypeVoiceChanger.Effects
         float diff;
         float mult;
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             if (mixa > 0)
             {

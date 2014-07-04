@@ -96,7 +96,7 @@ namespace SkypeVoiceChanger.Effects
         float makeupv;
         float autogain = 0; // never assigned to
 
-        public override void Slider()
+        protected override void Slider()
         {
             thresh = slider1;
             threshv = exp(thresh * db2log);
@@ -121,7 +121,7 @@ namespace SkypeVoiceChanger.Effects
         float runmax;
         float runave;
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             float ospl0 = spl0;
             float ospl1 = spl1;

@@ -76,10 +76,17 @@ namespace SkypeVoiceChanger.Effects
         {
         }
 
+        private volatile bool sliderChanged;
+
+        public void SliderChanged()
+        {
+            sliderChanged = true;
+        }
+
         /// <summary>
         /// will be called when a slider value has been changed
         /// </summary>
-        public abstract void Slider();
+        protected abstract void Slider();
 
         /// <summary>
         /// called before each block is processed
@@ -89,10 +96,20 @@ namespace SkypeVoiceChanger.Effects
         { 
         }
 
+        public void OnSample(ref float left, ref float right)
+        {
+            if (sliderChanged)
+            {
+                Slider();
+                sliderChanged = false;
+            }
+            Sample(ref left, ref right);            
+        }
+
         /// <summary>
         /// called for each sample
         /// </summary>        
-        public abstract void Sample(ref float spl0, ref float spl1);
+        protected abstract void Sample(ref float spl0, ref float spl1);
 
         public override string ToString()
         {

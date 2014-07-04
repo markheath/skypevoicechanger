@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SkypeVoiceChanger.Effects
 {
     public class EffectChain : IEnumerable<Effect>
     {
-        public List<Effect> effects;
+        private readonly List<Effect> effects;
+        public event EventHandler<EventArgs> Modified;
+
+        protected virtual void OnModified()
+        {
+            EventHandler<EventArgs> handler = Modified;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
 
         public EffectChain()
         {
@@ -17,6 +22,7 @@ namespace SkypeVoiceChanger.Effects
         public void Add(Effect effect)
         {
             effects.Add(effect);
+            OnModified();
         }
 
         public bool MoveUp(Effect effect)
@@ -30,6 +36,7 @@ namespace SkypeVoiceChanger.Effects
             {
                 effects.RemoveAt(index);
                 effects.Insert(index - 1, effect);
+                OnModified();
                 return true;
             }
             return false;
@@ -46,6 +53,7 @@ namespace SkypeVoiceChanger.Effects
             {
                 effects.RemoveAt(index);
                 effects.Insert(index + 1, effect);
+                OnModified();
                 return true;
             }
             return false;
@@ -54,6 +62,7 @@ namespace SkypeVoiceChanger.Effects
         public void Clear()
         {
             effects.Clear();
+            OnModified();
         }
 
         public bool Contains(Effect item)
@@ -68,7 +77,10 @@ namespace SkypeVoiceChanger.Effects
 
         public bool Remove(Effect effect)
         {
-            return effects.Remove(effect);
+            var removed = effects.Remove(effect);
+            if (removed)
+                OnModified();
+            return removed;
         }
 
         public IEnumerator<Effect> GetEnumerator()

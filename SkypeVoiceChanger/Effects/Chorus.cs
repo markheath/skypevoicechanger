@@ -37,7 +37,7 @@ namespace SkypeVoiceChanger.Effects
         float drymix;
         float[] buffer = new float[1000000];
 
-        public override void Slider()
+        protected override void Slider()
         {
             numvoices=min(16,max(slider2,1));
             choruslen=slider1*SampleRate*0.001f;
@@ -56,7 +56,7 @@ namespace SkypeVoiceChanger.Effects
             drymix = pow(2,slider6/6);
         }
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             if(bpos >= choruslen) {
               bpos=0;

@@ -27,7 +27,7 @@ namespace SkypeVoiceChanger.Effects
 
         void OnSliderValueChanged(object sender, EventArgs e)
         {
-            effect.Slider();
+            effect.SliderChanged();
         }
 
         public void Clear()

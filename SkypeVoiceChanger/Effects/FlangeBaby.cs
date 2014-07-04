@@ -96,7 +96,7 @@ namespace SkypeVoiceChanger.Effects
             twopi = 2 * PI;
         }
 
-        public override void Slider()
+        protected override void Slider()
         {
             delay = slider1;
             offset = slider6;
@@ -133,7 +133,7 @@ namespace SkypeVoiceChanger.Effects
             }
         }
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             float back0 = counter - sdelay0;
             float back1 = counter - sdelay1;

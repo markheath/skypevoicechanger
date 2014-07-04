@@ -45,7 +45,7 @@ namespace SkypeVoiceChanger.Effects
         float pongpan;
         float[] buffer = new float[1000000];
 
-        public override void Slider()
+        protected override void Slider()
         {
             odelay = delaylen;
             beat = 240 * slider7;
@@ -71,7 +71,7 @@ namespace SkypeVoiceChanger.Effects
 
         float sw;
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             int dpint = delaypos * 2;
             float os1 = buffer[dpint + 0];

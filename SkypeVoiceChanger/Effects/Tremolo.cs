@@ -24,7 +24,7 @@ namespace SkypeVoiceChanger.Effects
             get { return "Tremolo"; }
         }
 
-        public override void Slider()
+        protected override void Slider()
         {
             adv=PI*2*slider1/SampleRate;
             sep=slider3*PI;
@@ -32,7 +32,7 @@ namespace SkypeVoiceChanger.Effects
             sc=0.5f*amount; amount=1-amount;
         }
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             spl0 = spl0 * ((cos(pos) + 1) * sc + amount);
             spl1 = spl1 * ((cos(pos + sep) + 1) * sc + amount);

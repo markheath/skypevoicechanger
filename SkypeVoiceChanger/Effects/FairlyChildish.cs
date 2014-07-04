@@ -100,7 +100,7 @@ namespace SkypeVoiceChanger.Effects
 
         float agc;
 
-        public override void Slider()
+        protected override void Slider()
         {
             thresh = slider1;
             threshv = exp(thresh * db2log);
@@ -154,7 +154,7 @@ namespace SkypeVoiceChanger.Effects
         float runave;
         float dcoffset = 0; // never assigned to
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             if (agc == leftright)
             {

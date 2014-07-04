@@ -69,7 +69,7 @@ namespace SkypeVoiceChanger.Effects
         float mixmgd;
         float mixhgd;
 
-        public override void Slider()
+        protected override void Slider()
         {
             mixl = slider1 / 100;
             mixm = slider3 / 100;
@@ -114,7 +114,7 @@ namespace SkypeVoiceChanger.Effects
         float rfh;
         float rfl;
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             float dry0 = spl0;
             float dry1 = spl1;

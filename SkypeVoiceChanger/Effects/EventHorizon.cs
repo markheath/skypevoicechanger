@@ -67,7 +67,7 @@ namespace SkypeVoiceChanger.Effects
             get { return "EventHorizon peak eating limiter"; }
         }
 
-        public override void Slider()
+        protected override void Slider()
         {
             thresh = exp(slider1 * db2log);
             threshdb = slider1;
@@ -84,7 +84,7 @@ namespace SkypeVoiceChanger.Effects
             scmult = abs((ceildb - sc) / (peakdb - sc));
         }
 
-        public override void Sample(ref float spl0, ref float spl1)
+        protected override void Sample(ref float spl0, ref float spl1)
         {
             float peak = max(abs(spl0), abs(spl1));
             spl0 = spl0 * makeup;
