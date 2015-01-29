@@ -99,9 +99,9 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(15, 40);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(185, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(187, 19);
             this.metroLabel2.TabIndex = 8;
-            this.metroLabel2.Text = "Copyright © Mark Heath 2014";
+            this.metroLabel2.Text = "Copyright © Mark Heath 2015";
             // 
             // metroLabelTitle
             // 
@@ -109,7 +109,7 @@
             this.metroLabelTitle.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.metroLabelTitle.Location = new System.Drawing.Point(15, 11);
             this.metroLabelTitle.Name = "metroLabelTitle";
-            this.metroLabelTitle.Size = new System.Drawing.Size(182, 19);
+            this.metroLabelTitle.Size = new System.Drawing.Size(183, 19);
             this.metroLabelTitle.TabIndex = 7;
             this.metroLabelTitle.Text = "Skype Voice Changer v2.0";
             // 

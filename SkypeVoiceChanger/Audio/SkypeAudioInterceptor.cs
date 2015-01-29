@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Net.Sockets;
+using System.Windows.Forms;
 using SKYPE4COMLib;
 
 namespace SkypeVoiceChanger.Audio
@@ -23,7 +24,9 @@ namespace SkypeVoiceChanger.Audio
         private NetworkStream micStream;
         private NetworkStream outputDeviceStream;
         private Call currentCall;
+        private string originalSoundCard;
         private SkypeStatus skypeStatus;
+        private readonly Timer timer;
 
         public event EventHandler SkypeStatusChanged;
 
@@ -31,6 +34,13 @@ namespace SkypeVoiceChanger.Audio
         {
             this.log = log;
             this.audioProcessor = audioProcessor;
+
+            this.timer = new Timer();
+            timer.Interval = 500; // TimeSpan.FromMilliseconds(500);
+            timer.Tick += TimerOnTick;
+            timer.Start();
+
+            
             InitSockets();
 
             this.skype = skype;
@@ -42,6 +52,28 @@ namespace SkypeVoiceChanger.Audio
             skypeEvents.AttachmentStatus += OnSkypeAttachmentStatus;
             skypeEvents.CallStatus += OnSkypeCallStatus;
             skypeEvents.Error += OnSkypeError;
+        }
+
+        private void TimerOnTick(object sender, EventArgs eventArgs)
+        {
+            if (currentCall == null && skype.AttachmentStatus == TAttachmentStatus.apiAttachSuccess && skype.ActiveCalls.Count > 0)
+            {
+                log.Warning("In progress call without API notification, attempting to attach...");
+                foreach (Call call in skype.ActiveCalls)
+                {
+                    // indexer issue, so using enumeration
+                    OnCallStarted(call);
+                    break;
+                }
+
+                //skype.ActiveCalls[0]
+            }
+            else if (currentCall != null && skype.ActiveCalls.Count == 0)
+            {
+                log.Info("Call has ended without API notification");
+                // missed a call ending
+                OnCallFinished(false);
+            }
         }
 
         public void Attach()
@@ -114,7 +146,7 @@ namespace SkypeVoiceChanger.Audio
             }
             else if (status == TCallStatus.clsFinished)
             {
-                OnCallFinished();
+                OnCallFinished(false);
             }
             else
             {
@@ -122,8 +154,20 @@ namespace SkypeVoiceChanger.Audio
             }
         }
 
-        private void OnCallFinished()
+        private void OnCallFinished(bool detach)
         {
+            if (currentCall == null) return;
+            log.Info("Call finished");
+
+            // we are shutting down so just put the soundcard back the way it was
+            if (detach)
+            {
+                currentCall.InputDevice[TCallIoDeviceType.callIoDeviceTypePort] = "";
+                currentCall.InputDevice[TCallIoDeviceType.callIoDeviceTypeSoundcard] = originalSoundCard;
+                currentCall.CaptureMicDevice[TCallIoDeviceType.callIoDeviceTypePort] = "";
+                currentCall.OutputDevice[TCallIoDeviceType.callIoDeviceTypePort] = "";
+            }
+
             SkypeStatus = SkypeStatus.WaitingForCall;
             currentCall = null;
             if (inputDeviceStream != null)
@@ -148,6 +192,7 @@ namespace SkypeVoiceChanger.Audio
 
             currentCall = call;
             call.CaptureMicDevice[TCallIoDeviceType.callIoDeviceTypePort] = MicDevicePort.ToString(CultureInfo.InvariantCulture);
+            originalSoundCard = call.InputDevice[TCallIoDeviceType.callIoDeviceTypeSoundcard];
             call.InputDevice[TCallIoDeviceType.callIoDeviceTypeSoundcard] = "";
             call.InputDevice[TCallIoDeviceType.callIoDeviceTypePort] = InputDevicePort.ToString(CultureInfo.InvariantCulture);
             call.OutputDevice[TCallIoDeviceType.callIoDeviceTypePort] = OutputDevicePort.ToString(CultureInfo.InvariantCulture);
@@ -233,6 +278,8 @@ namespace SkypeVoiceChanger.Audio
 
         public void Dispose()
         {
+            timer.Stop();
+            OnCallFinished(true); // clean up a current call
             micServer.Dispose();
             inputDeviceServer.Dispose();
             outputDeviceServer.Dispose();
