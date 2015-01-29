@@ -186,6 +186,11 @@ namespace SkypeVoiceChanger.Audio
         {
             if (currentCall != null)
             {
+                if (call.Id == currentCall.Id)
+                {
+                    log.Info("already handled this call {0}", call.Id);
+                    return;
+                }
                 log.Warning("conference calls not supported");
                 return;
             }
