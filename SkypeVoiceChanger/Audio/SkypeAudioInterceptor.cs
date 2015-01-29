@@ -38,9 +38,6 @@ namespace SkypeVoiceChanger.Audio
             this.timer = new Timer();
             timer.Interval = 500; // TimeSpan.FromMilliseconds(500);
             timer.Tick += TimerOnTick;
-            timer.Start();
-
-            
             InitSockets();
 
             this.skype = skype;
@@ -52,6 +49,7 @@ namespace SkypeVoiceChanger.Audio
             skypeEvents.AttachmentStatus += OnSkypeAttachmentStatus;
             skypeEvents.CallStatus += OnSkypeCallStatus;
             skypeEvents.Error += OnSkypeError;
+            timer.Start();
         }
 
         private void TimerOnTick(object sender, EventArgs eventArgs)
